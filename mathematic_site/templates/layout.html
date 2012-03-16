@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="dns-prefetch" href="//ajax.googleapis.com">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+<title>{% block title %} - {% endblock %}Mathematic</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{{ '/static/gen/site.css'|timestamped }}">
+
+<script type="text/javascript" src="http://use.typekit.com/ybd6ymi.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <a href="/" class="logo_btn">Mathematic</a>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('work') }}">Our Work</a></li>
+                    <li><a href="{{ url_for('services') }}">Services</a></li>
+                    <li><a href="{{ url_for('about') }}">About Mathematic</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                    {#<li><a href="{{ url_for('blog') }}">Our Thinking</a></li>#}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    {% block head_content %}{% endblock%}
+
+    <div class="wrapper main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="group">
+        <div id="contact" class="vcard">
+            <div class="fn org">Mathematic</div>
+            <div class="adr">
+                <span class="locality">New York</span>,
+                <abbr class="region" title="New York">NY</abbr>
+            </div>
+            <div class="adr">
+                <span class="locality">Greenport</span>,
+                <abbr class="region" title="New York">NY</abbr>
+            </div>
+            <a href="mailto:info@mathematicinc.com" class="email">info@mathematicinc.com</a>
+        </div>
+
+        &copy; 2012 Mathematic LLC
+    </footer>
+</body>
+</html>
