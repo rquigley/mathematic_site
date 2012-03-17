@@ -1,3 +1,5 @@
 *.un~
 *.pyc
+.sass-cache/
 mathematic_site/static/gen
+project_files/*.jar

@@ -16,7 +16,7 @@
 
 </head>
 <body>
-    <header>
+    {#<header>
         <div class="wrapper">
             <a href="/" class="logo_btn">Mathematic</a>
             <nav>
@@ -25,11 +25,11 @@
                     <li><a href="{{ url_for('services') }}">Services</a></li>
                     <li><a href="{{ url_for('about') }}">About Mathematic</a></li>
                     <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
-                    {#<li><a href="{{ url_for('blog') }}">Our Thinking</a></li>#}
+                    <li><a href="{{ url_for('blog') }}">Our Thinking</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </header>#}
 
     {% block head_content %}{% endblock%}
 
@@ -39,7 +39,6 @@
 
     <footer class="group">
         <div id="contact" class="vcard">
-            <div class="fn org">Mathematic</div>
             <div class="adr">
                 <span class="locality">New York</span>,
                 <abbr class="region" title="New York">NY</abbr>

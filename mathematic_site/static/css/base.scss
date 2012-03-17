@@ -1,40 +1,10 @@
+@import "normalize.scss";
+@import "m_mixins.scss";
+
 $min_width_tablet: 480px;
 
-@mixin shadow($offset_x, $offset_y, $blur_radius, $color) {
-    -moz-box-shadow: $offset_x $offset_y $blur_radius $color; /* FF3.5+ */
-    -webkit-box-shadow: $offset_x $offset_y $blur_radius $color; /* Saf3.0+, Chrome */
-    box-shadow: $offset_x $offset_y $blur_radius $color; /* Opera 10.5, IE 9.0 */
-    filter:  progid:DXImageTransform.Microsoft.dropshadow(OffX=$offset_x, OffY=$offset_y, Color='$color'); /* IE6,IE7 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=$offset_x, OffY=$offset_y, Color='$color')"; /* IE8 */
-}
-
-@mixin transition($time, $property: all, $ease: ease-out) {
-    -moz-transition: $property $time $ease;
-    -o-transition: $property $time $ease;
-    -webkit-transition: $property $time $ease;
-    transition: $property $time $ease;
-}
-@mixin transition_none() {
-    -moz-transition: none;
-    -o-transition: none;
-    -webkit-transition: none;
-    transition: none;
-}
-
-.group:before,
-.group:after {
-    content:"";
-    display:table;
-}
-.group:after {
-    clear:both;
-}
-.group {
-    zoom:1; /* For IE 6/7 (trigger hasLayout) */
-}
-
 html {
-    background: #fff
+    background: #23282e;
 }
 
 header {
@@ -42,7 +12,8 @@ header {
     background: #18222f;
 }
 .logo_btn {
-    margin: 0 auto;
+/*    margin: 0 auto;*/
+    margin: 20px 0 0 25px;
     display: block;
     width: 128px;
     height: 128px;
@@ -90,7 +61,7 @@ nav {
 footer {
     $footer_color: #aaa;
     background: #23282e;
-    padding: 20px;
+    padding: 0 0 0 45px;
     color: $footer_color;
     text-shadow: 0 -1px rgba(0,0,0,0.4);
     font-size: 11px;
@@ -114,9 +85,9 @@ footer {
     }
 }
 #contact {
-    float: left;
-    width: 280px;
-    margin: 0 196px 0 0;
+    /*float: left;
+        width: 280px;
+        margin: 0 196px 0 0;*/
 }
 
 /*screen widths 1024px (Desktop), 768px (iPad portrait), 320px (iPhone portrait), */
