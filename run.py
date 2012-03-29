@@ -1,2 +1,2 @@
-from mathematic_site import app
+from website import app
 app.run(debug=True)
