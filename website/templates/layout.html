@@ -9,48 +9,62 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="{{ '/static/gen/site.css'|timestamped }}">
+<link rel="stylesheet" href="{{ '/static/gen/css/site.css'|timestamped }}">
 
 <script type="text/javascript" src="http://use.typekit.com/ybd6ymi.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
 </head>
 <body>
-    {#<header>
-        <div class="wrapper">
-            <a href="/" class="logo_btn">Mathematic</a>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('work') }}">Our Work</a></li>
-                    <li><a href="{{ url_for('services') }}">Services</a></li>
-                    <li><a href="{{ url_for('about') }}">About Mathematic</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
-                    <li><a href="{{ url_for('blog') }}">Our Thinking</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>#}
-
-    {% block head_content %}{% endblock%}
-
-    <div class="wrapper main-content">
-        {% block content %}{% endblock %}
+<div class="site-head">
+    <div class="logo_cnt">
+        <a href="/" class="logo_btn">Mathematic</a>
     </div>
 
-    <footer class="group">
-        <div id="contact" class="vcard">
-            <div class="adr">
-                <span class="locality">New York</span>,
-                <abbr class="region" title="New York">NY</abbr>
-            </div>
-            <div class="adr">
-                <span class="locality">Greenport</span>,
-                <abbr class="region" title="New York">NY</abbr>
-            </div>
-            <a href="mailto:info@mathematicinc.com" class="email">info@mathematicinc.com</a>
-        </div>
+    <div class="nav">
+        <ul>
+            <li><a href="{{ url_for('work') }}"><span data-title="Our Work">Our Work</span></a></li>
+            <li><a href="{{ url_for('services') }}">Services</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+            {#<li><a href="{{ url_for('blog') }}">Our Thinking</a></li>#}
+        </ul>
+    </div>
+</div>
 
-        &copy; 2012 Mathematic LLC
-    </footer>
+{% block head_content %}{% endblock%}
+
+{% block content %}{% endblock %}
+
+<footer class="group">
+    <div id="contact" class="vcard">
+        <div class="adr">
+            <span class="locality">New York</span>,
+            <abbr class="region" title="New York">NY</abbr>
+        </div>
+        <div class="adr">
+            <span class="locality">Greenport</span>,
+            <abbr class="region" title="New York">NY</abbr>
+        </div>
+        <a href="mailto:info@mathematicinc.com" class="email bg_lnk"><span data-title="info@mathematicinc.com">info@mathematicinc.com</span></a>
+    </div>
+
+    &copy; 2012 Mathematic LLC
+</footer>
+
+{% if 1 %}
+    <script src="/static/js-src/lib/jquery.js"></script>
+    <script src="/static/js-src/lib/underscore.js"></script>
+    <script src="/static/js-src/lib/memphis/memphis.js"></script>
+
+    <script src="/static/js-src/__init__.js"></script>
+    <script src="/static/js-src/views/__init__.js"></script>
+    <script src="/static/js-src/views/home.js"></script>
+
+    <script src="/static/js-src/boot.js"></script>
+{% else %}
+
+{% endif %}
+
 </body>
 </html>

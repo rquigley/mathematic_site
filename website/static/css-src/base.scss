@@ -3,23 +3,48 @@
 
 $min_width_tablet: 480px;
 
-html {
-    background: #23282e;
+html, body {
+  height: 100%;
+  background: #f9faf4;
 }
 
-header {
-    padding: 20px 0;
+.site-head {
+    z-index: 10;
+}
+.nav {
+    font-size: 15px;
+    background: #23282e;
+
+
+    li {
+        list-style: none;
+        border-bottom: 1px #394049 solid;
+    }
+    a {
+        display: block;
+        padding: 10px 5px 10px 15px;
+        text-decoration: none;
+        color: #b9c4d3;
+        font-weight: 600;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+.logo_cnt {
+    padding: 15px;
     background: #18222f;
 }
 .logo_btn {
-/*    margin: 0 auto;*/
-    margin: 20px 0 0 25px;
     display: block;
     width: 128px;
     height: 128px;
-    background: url(../img/sprite.png) 0 0 no-repeat;
-    text-indent: -9999px;
-    
+    background: url(../../img/sprite.png) 0 0 no-repeat;
+    @include ir;
+
     @include transition(0.3s, all);
 
     &:hover {
@@ -29,26 +54,7 @@ header {
         zoom: 1;
     }
 }
-nav {
-    font-family: proxima-nova,sans-serif;
-    font-size: 15px;
-    margin: 0 0 0 20px;
 
-    a {
-        display: block;
-        padding: 10px 5px;
-        text-decoration: none;
-        color: #b9c4d3;
-        font-weight: 600;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
-
-        @include transition(0.3s, all);
- 
-        &:hover {
-            color: #fff;
-        }
-    }
-}
 
 .wrapper {
     max-width: 980px;
@@ -59,14 +65,13 @@ nav {
 }
 
 footer {
-    $footer_color: #aaa;
-    background: #23282e;
+    $footer_color: #333;
     padding: 0 0 0 45px;
     color: $footer_color;
     text-shadow: 0 -1px rgba(0,0,0,0.4);
     font-size: 11px;
     line-height: 2;
-    
+
     a {
         color: $footer_color;
         text-decoration: none;
@@ -79,7 +84,7 @@ footer {
             color: #efefef;
         }
     }
-    
+
     abbr[title] {
         border-bottom: none;
     }
@@ -90,15 +95,169 @@ footer {
         margin: 0 196px 0 0;*/
 }
 
-/*screen widths 1024px (Desktop), 768px (iPad portrait), 320px (iPhone portrait), */
-@media screen and (min-width: 320px) {
-    .logo_btn {
-        margin: 20px 0 0 25px;
+.ss_cont {
+    position: relative;
+    min-height: 100%;
+    z-index: 0;
+}
+
+.ss_slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.home-head {
+    position: relative;
+    z-index: 0;
+
+    .ss_slide {
+        display: none;
+        right: 0;
+        bottom: 0;
     }
-    nav {
-        font-size: 18px;
+    .ss_slide1 {
+        display: block;
     }
-    nav li {
+
+    .bg {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .bg_lnk {
         display: inline-block;
+        overflow: hidden;
+        vertical-align: top;
+        -webkit-perspective: 400px;
+        -moz-perspective: 400px;
+        -webkit-perspective-origin: 50% 50%;
+        -moz-perspective-origin: 50% 50%;
+
+        span {
+            display: block;
+            position: relative;
+            padding: 0 2px;
+            -webkit-transition: all 400ms ease;
+            -moz-transition: all 400ms ease;
+            -webkit-transform-origin: 50% 0%;
+            -moz-transform-origin: 50% 0%;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+
+            &:after {
+                content: attr(data-title);
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                padding: 0 2px;
+                color: #fff;
+                background: hsl(206, 80%, 30%);
+                -webkit-transform-origin: 50% 0%;
+                -moz-transform-origin: 50% 0%;
+                -webkit-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+                -moz-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+            }
+        }
+
+        &:hover span {
+            background: #111;
+            -webkit-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+            -moz-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+        }
+    }
+
+    .site-head {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        .logo_cnt {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+
+            @include shadow(0, 1px, 10px, rgba(0,0,0,0.5));
+            @include transition(0.4s);
+            @include border_radius(3px);
+            &:hover {
+                @include shadow(0, 1px, 10px, rgba(0,0,0,0.1));
+            }
+        }
+
+        .nav {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            font-family: proxima-nova, sans-serif;
+            font-size: 18px;
+            line-height: 18px;
+            padding: 0 10px 0 5px;
+            @include shadow_inner(0, 0, 5px, rgba(0,0,0,0.8));
+
+            li {
+                float: left;
+                display: block;
+                border-bottom: none;
+
+                &:after {
+                    content: '/';
+                    display: block;
+                    float: left;
+                    margin: 0 10px;
+                    padding: 10px 5px;
+                    line-height: 18px;
+                    color: #777;
+                }
+                &:last-child:after {
+                    content: none;
+                }
+            }
+
+            a {
+                display: block;
+                float: left;
+                padding: 10px 5px 10px 10px;
+                @include transition(0.7s);
+
+                &:hover {
+                    text-shadow: 0 0 6px #87b4c5;
+                    @include transition(0.2s);
+                }
+
+            }
+
+        }
+    }
+
+    .home-head {
+        min-height: 100%;
+
+        .bg {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+    	    background-size: cover;
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+
+    .home-head {
     }
 }

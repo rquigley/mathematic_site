@@ -1,16 +1,59 @@
 import os
 import re
 from tempfile import NamedTemporaryFile
-from fabric.api import *
+from fabric.api import local, env, settings, abort, run, cd
+
+env.project_dir = '/var/www/mathematic'
+
+env.hosts = ['mathematicinc.com']
 
 env.static_path = './mathematic_site/static'
 env.sass_bin = 'sass'
 env.yui_bin = 'java -jar ./project_files/yuicompressor.jar'
 
+def deploy():
+    update_source()
+
+    build_from_source()
+    #-rm build/last
+    #-mkdir building
+
+
+    #local("touch config.wsgi")
+
+def update_source():
+    src_dir = '%s/src' % env.project_dir
+
+    with settings(warn_only = True):
+        if run("test -d %s" % src_dir).failed:
+            run("git clone git@github.com:rquigley/mathematic_site.git %s" % src_dir)
+
+    with cd(src_dir):
+        run("git pull origin master")
+
+def build_from_source():
+    src_dir = '%s/src' % env.project_dir
+    build_dir = '%s/build/building' % env.project_dir
+
+    with settings(warn_only = True):
+        if run("test -d %s" % build_dir).succeeded:
+            run('rm -rf %s' % build_dir)
+
+    run('mkdir %s' % build_dir)
+
+    run('rsync -a --exclude .git %s/ %s' % (src_dir, build_dir))
+
+
+    #system("rsync -a --exclude \"project_files\" --exclude \"httpd-dev.conf\" --exclude .svn $SITE_SVN_DIR/$site_name/ $SITE_PRODUCTION_DIR/$site_name");
+
+
 def build():
     #build_js()
     #copy_js()
     update_css()
+
+def sass_watch():
+    local('sass --scss --watch website/static/css-src/base.scss:website/static/gen/css/site.css')
 
 def bootstrap():
     #http://yui.zenfs.com/releases/yuicompressor/yuicompressor-2.4.7.zip
