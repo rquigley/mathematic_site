@@ -14,6 +14,13 @@
     box-shadow: none; /* Opera 10.5, IE 9.0 */
 }
 
+@mixin opacity($num) {
+    $num2: $num*100;
+    opacity: $num;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$num2})';
+    filter: alpha(opacity=$num2);
+}
+
 @mixin transition($time, $property: all, $ease: ease-out, $delay: 0s) {
     -moz-transition: $property $time $ease $delay;
     -o-transition: $property $time $ease $delay;

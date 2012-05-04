@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from utility import slugify, friendly_time, timestamped
+import re
 
 app = Flask(__name__)
 app.debug = True
@@ -30,3 +31,14 @@ def contact():
 @app.route("/our-thinking/")
 def blog():
     return render_template('blog.html')
+
+@app.route("/favicon.ico")
+def favicon():
+    return app.send_static_file("img/favicon.ico")
+
+@app.route("/static/<directory>/<path:filepath>")
+def static_versioned(directory, filepath):
+    if filepath.find('.v') != -1:
+        filepath = re.sub('\.v\d+', '', filepath)
+
+    return app.send_static_file(directory+'/'+filepath)

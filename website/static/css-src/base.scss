@@ -101,27 +101,42 @@ footer {
     z-index: 0;
 }
 
-.ss_slide {
+.ss__slide {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 0;
+
+    &.active {
+        z-index: 1;
+    }
 }
 
 .home-head {
     position: relative;
     z-index: 0;
 
-    .ss_slide {
+    .ss__slide {
         display: none;
         right: 0;
         bottom: 0;
     }
-    .ss_slide1 {
+    .ss__slide1 {
         display: block;
+    }
+
+    .ss__prev, .ss_next, .ss__counter-cont, .ss__counter {
+        display: none;
     }
 
     .bg {
         display: none;
+    }
+    .info {
+        position: absolute;
+        top: 200px;
+        left: 0;
+        @include opacity(0.2);
     }
 }
 
@@ -179,10 +194,10 @@ footer {
             position: absolute;
             top: 20px;
             left: 20px;
-
             @include shadow(0, 1px, 10px, rgba(0,0,0,0.5));
             @include transition(0.4s);
             @include border_radius(3px);
+
             &:hover {
                 @include shadow(0, 1px, 10px, rgba(0,0,0,0.1));
             }
@@ -235,6 +250,71 @@ footer {
 
     .home-head {
         min-height: 100%;
+
+        .ss__prev, .ss__next {
+            display: block;
+            border: 1px #900 solid;
+            position: absolute;
+            top: 37%;
+            width: 60px;
+            height: 200px;
+            cursor: pointer;
+            z-index: 200;
+            @include transition(0.1s, background-color);
+
+            .icn {
+                display: block;
+                position: absolute;
+                top: 45%;
+                left: 20%;
+                content: '';
+                width: 27px;
+                height: 43px;
+                @include sprite(-312px, -114px);
+            }
+
+            &:hover {
+                opacity: 0.6;
+                @include transition_none();
+            }
+        }
+        .ss__prev {
+            left: 0;
+        }
+        .ss__next {
+            right: 0;
+
+            .icn {
+                background-position: -360px -114px;
+                left: auto;
+                right: 20%;
+            }
+        }
+        .ss__counter-cont {
+            display: block;
+            position: absolute;
+            height: 20px;
+            width: 100%;
+            bottom: 7px;
+            text-align: center;
+            z-index: 2;
+        }
+        .ss__counter {
+            display: inline-block;
+            height: 20px;
+            width: 200px;
+        }
+        .ss__slot {
+            display: inline-block;
+            width: 19px;
+            height: 23px;
+            @include sprite(-14px, -135px);
+            cursor: pointer;
+
+            &.active {
+                background-position: 5px -135px;
+            }
+        }
 
         .bg {
             display: block;
