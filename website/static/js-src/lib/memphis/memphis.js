@@ -96,7 +96,7 @@ define([
             viewport.width = win.width();
             viewport.height = win.height();
 
-            win.resize(_.debounce(onResizeHandler, 300, true));
+            win.resize(_.debounce(onResizeHandler, 300));
 
             breakpointHandler();
         };
@@ -142,6 +142,8 @@ define([
                 viewport.lastBreakpoint = viewport.currBreakpoint;
             }
             viewport.currBreakpoint = selBp;
+
+            memphis.publish('memphis.window.breakpoint', viewport);
 
             if (viewport.lastBreakpoint) {
                 memphis.publish('memphis.window.breakpoint.out'+viewport.lastBreakpoint, viewport);
