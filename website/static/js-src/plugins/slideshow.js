@@ -108,7 +108,10 @@
             stopAutoPlay();
 
             idx = _.indexOf($(this).parent().children(), this);
-            transition(idx);
+
+            if (idx !== curIdx) {
+                transition(idx);
+            }
         };
 
         var startAutoPlay = function() {
@@ -182,7 +185,6 @@
                         });
                     });
             } else {
-                console.log('SHITTTTTT', curSlide);
                 memphis.publish('slideshow.onTransition.end', {
                     curIdx: curIdx,
                     curEl: curSlide,

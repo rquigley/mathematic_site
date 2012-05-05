@@ -8,7 +8,7 @@
         <div class="ss__slide ss__slide1">
             <div class="bg" style="background-image: url(/static/img/bg1.jpg)"></div>
             <div class="info">
-                MAKERS
+                <a href="/work/makers/"><img src="/static/img/home/makers.png"></a>
             </div>
         </div>
         <div class="ss__slide ss__slide2">
@@ -29,7 +29,18 @@
 </div>
 
 <div class="wrapper main-content">
-    Buidling, scaling and maintaining your ideas.
+    <h2>Hello. We're Mathematic, a digital development agency, specializing in building, scaling and maintaining your ideas.</h2>
+    
+    
+    <div class="name">
+        Subscribe to our mailing list
+        <form action="/mailing-list" method="post">
+            <input type="email" name="email">
+
+            <p><input type="submit" value="Subscribe"></p>
+        </form>
+    </div>
+
     {#We build web solutions using a variety News will go here#}
 </div>
 {% endblock %}
