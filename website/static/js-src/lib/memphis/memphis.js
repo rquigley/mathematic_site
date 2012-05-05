@@ -40,6 +40,14 @@ define([
             }
         };
 
+        var clear = function(channel) {
+            if (!channels[channel]) {
+                return;
+            }
+
+            delete channels[channel];
+        };
+
         var publish = function(channel) {
             var args,
                 i, l,
@@ -62,6 +70,7 @@ define([
             publish: publish,
             subscribe: subscribe,
             unsubscribe: unsubscribe,
+            clear: clear,
             installTo: function(obj) {
                 obj.subscribe = subscribe;
                 obj.unsubscribe = unsubscribe;
