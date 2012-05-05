@@ -1,11 +1,8 @@
-
 define([
-], function() {
+    'jquery',
+    'underscore'
+], function($, _) {
     "use strict";
-
-    //var root = this;
-
-    //root.memphis = memphis;
 
     var memphis = {};
 
@@ -80,6 +77,85 @@ define([
     }());
 
     memphis.mediator.installTo(memphis);
+
+    memphis.window = (function() {
+        var win = $(window),
+            viewport = {
+                currBreakpoint: null,
+                lastBreakpoint: null,
+                width: 0,
+                height: 0
+            },
+            breakpoints = [];
+
+        var init = function(uBreakpoints) {
+            if (uBreakpoints) {
+                breakpoints = uBreakpoints;
+            }
+
+            viewport.width = win.width();
+            viewport.height = win.height();
+
+            win.resize(_.debounce(onResizeHandler, 300, true));
+
+            breakpointHandler();
+        };
+
+        var getViewport = function() {
+            return viewport;
+        };
+
+        var onResizeHandler = function() {
+            var w = win.width(),
+                h = win.height();
+
+            if (w === viewport.width && h === viewport.height) {
+                return;
+            }
+            viewport.width = w;
+            viewport.height = h;
+
+            memphis.publish('memphis.window.resize', viewport);
+
+            breakpointHandler();
+        };
+
+        var breakpointHandler = function() {
+            var bp,
+                selBp = 1;
+
+            if (!breakpoints.length) {
+                return;
+            }
+
+            for (var n in breakpoints) {
+                if (breakpoints[n] < viewport.width) {
+                    selBp = breakpoints[n];
+                }
+            }
+
+            if (selBp === viewport.currBreakpoint) {
+                return;
+            }
+
+            if (viewport.currBreakpoint) {
+                viewport.lastBreakpoint = viewport.currBreakpoint;
+            }
+            viewport.currBreakpoint = selBp;
+
+            if (viewport.lastBreakpoint) {
+                memphis.publish('memphis.window.breakpoint.out'+viewport.lastBreakpoint, viewport);
+            }
+            memphis.publish('memphis.window.breakpoint.in'+viewport.currBreakpoint, viewport);
+        };
+
+        return {
+            init: init,
+            getViewport: getViewport
+        }
+    }());
+
+    memphis.getViewport = memphis.window.getViewport;
 
     return memphis;
 });
