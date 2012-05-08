@@ -1,9 +1,10 @@
 //memphis = testr('memphis');
 //QUnit.config.autostart = false;
-module("Memphis");
 
-require(['memphis'], function (memphis) {
+require(['memphis', 'jquery'], function (memphis, $) {
     "use strict";
+
+    module("Memphis PubSub");
 
     test("Subscribe", function() {
         expect(7);
@@ -80,5 +81,32 @@ require(['memphis'], function (memphis) {
         ok(obj.hasOwnProperty('publish'), "has publish");
     });
 
+    module("Memphis Window");
 
+    test("Breakpoint setup", function() {
+        expect(2);
+
+        var breakpoints = [];
+        memphis.window.init();
+
+        equal(0, memphis.window.getBreakpoints().length);
+
+        var exc = false;
+        try {
+            memphis.window.setBreakpoints(200);
+        } catch (e) {
+            exc = true;
+        }
+
+        memphis.window.setBreakpoints([0, 200]);
+        equal(2, memphis.window.getBreakpoints().length);
+    });
+
+    /*test("Resize handler", function() {
+        var spy1 = this.spy();
+
+        memphis.mediator.subscribe('memphis.window.resize', spy1);
+
+        ok(spy1.calledOnce);
+    });*/
 });

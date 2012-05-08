@@ -88,9 +88,9 @@ define([
             },
             breakpoints = [];
 
-        var init = function(uBreakpoints) {
-            if (uBreakpoints) {
-                breakpoints = uBreakpoints;
+        var init = function(breakpoints) {
+            if (breakpoints) {
+                setBreakpoints(breakpoints);
             }
 
             viewport.width = win.width();
@@ -103,6 +103,17 @@ define([
 
         var getViewport = function() {
             return viewport;
+        };
+
+        var getBreakpoints = function() {
+            return breakpoints;
+        };
+
+        var setBreakpoints = function(bps) {
+            if (toString.call(bps) != '[object Array]') {
+                throw "Breakpoints must be an array";
+            }
+            breakpoints = bps;
         };
 
         var onResizeHandler = function() {
@@ -153,8 +164,10 @@ define([
 
         return {
             init: init,
-            getViewport: getViewport
-        }
+            getViewport: getViewport,
+            getBreakpoints: getBreakpoints,
+            setBreakpoints: setBreakpoints
+        };
     }());
 
     memphis.getViewport = memphis.window.getViewport;

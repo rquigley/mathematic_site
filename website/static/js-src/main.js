@@ -12,10 +12,13 @@ require.config({
 define([
     'jquery',
     'memphis',
-], function($, memphis) {
+], function($, core) {
     "use strict";
 
     var path, path_a, mode;
+
+    core.window.init([0, 600, 1000]);
+    window.m = core;
 
     var init = function() {
         var view;
