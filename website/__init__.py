@@ -34,7 +34,11 @@ def blog():
 
 @app.route("/favicon.ico")
 def favicon():
-    return app.send_static_file("img/favicon.ico")
+    return app.send_static_file("favicon.ico")
+
+@app.route("/robots.txt")
+def robots():
+    return app.send_static_file("robots.txt")
 
 @app.route("/static/<directory>/<path:filepath>")
 def static_versioned(directory, filepath):
