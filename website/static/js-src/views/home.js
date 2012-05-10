@@ -4,11 +4,22 @@ define([
     'plugins/slideshow'
 ], function($, core, slideshow) {
     "use strict";
+    
+    var headEl = $('.home-head');
 
     var init = function() {
         var ss;
 
         setupSlideshow();
+        
+        headEl.on('click', '.btn_continue', function() {
+            $("html,body").animate(
+        	    {
+        	        scrollTop: $('.home-body').position().top
+        	    }
+        	);
+        })
+        
     };
     
     var setupSlideshow = function() {
@@ -56,7 +67,7 @@ define([
         
         core.subscribe('core.window.breakpoint', onHomeSlideshowBreakpoint);
         
-        homeSlideshow = slideshow($('.home-head'));
+        homeSlideshow = slideshow(headEl);
         homeSlideshow.init();
         
         onHomeSlideshowBreakpoint(core.getViewport());

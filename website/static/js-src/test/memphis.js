@@ -105,7 +105,7 @@ require(['memphis', 'jquery'], function (memphis, $) {
     /*test("Resize handler", function() {
         var spy1 = this.spy();
 
-        memphis.mediator.subscribe('memphis.window.resize', spy1);
+        memphis.mediator.subscribe('window.resize', spy1);
 
         ok(spy1.calledOnce);
     });*/

@@ -126,7 +126,7 @@ define([
             viewport.width = w;
             viewport.height = h;
 
-            memphis.publish('memphis.window.resize', viewport);
+            memphis.publish('window.resize', viewport);
 
             breakpointHandler();
         };
@@ -154,12 +154,12 @@ define([
             }
             viewport.currBreakpoint = selBp;
 
-            memphis.publish('memphis.window.breakpoint', viewport);
+            memphis.publish('window.breakpoint', viewport);
 
             if (viewport.lastBreakpoint) {
-                memphis.publish('memphis.window.breakpoint.out'+viewport.lastBreakpoint, viewport);
+                memphis.publish('window.breakpoint.out'+viewport.lastBreakpoint, viewport);
             }
-            memphis.publish('memphis.window.breakpoint.in'+viewport.currBreakpoint, viewport);
+            memphis.publish('window.breakpoint.in'+viewport.currBreakpoint, viewport);
         };
 
         return {
