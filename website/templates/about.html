@@ -1,15 +1,60 @@
-{% extends 'layout.html' %}
+{% if is_pjax %}
+    {% extends 'layout_pjax.html' %}
+{% else %}
+    {% extends 'layout.html' %}
+{% endif %}
 
 {% block title %}About Mathematic - {% endblock %}
 
+{% block body_class %}b_about{% endblock%}
+
 {% block content %}
-    Stability and professionalism are the hallmarks of your development partner. Mathematic is an interactive development firm specialized in building, scaling and maintaining websites and web applications. 
-Formed by Ryan Quigley, a technologist, developer and designer with over 15 years of experience, Mathematic is the firm called on to inspire confidence that your ideas will be realized without issue.
-
-
-Place
-A small seaside town on the tip of the North Fork, Greenport is a short hop away from Metropolitan New York...
+<div class="wrapper main-content page-body grad_cont about-content">
+    <h1>About Us</h1>
+    <div class="head">
+        Mathematic is a digital development agency specializing in engineering, scaling and maintaining web applications and websites.
+    </div>
     
+    <div class="group">
+        <div class="col1">
+            <h2>What makes us different</h2>
+            <p>We help design firms and agencies when their development needs outgrow internal resources. We offer a comprehensive range of development and consulting services and can integrate seamlessly with your current team of designers and developers.</p>
+
+            <p>Founded in 2011 by Ryan Quigley, Mathematic is a digital development agency specialized in building, scaling and maintaining websites and web applications. Whether you have an idea that needs implementation, an existing site that with performance issues, or an overdue project that needs rapidly needs to be completed, we bring</p>
+
+            <div class="people">
+                <div class="person">
+                    <img src="/static/img/about/rq.jpg" class="i" alt="Ryan Quigley">
+                    <h3>Ryan Quigley</h3>
+                    <a href="https://twitter.com/ryanquigley" class="twitter" target="_blank">@ryanquigley</a>
+
+                    <p>Ryan has been helping companies build websites since 1995. For over ten years, he ran web operations at a small design and interactive shop catering to the art world. His expertise is in designing and developing applications and sites using off the shelf or custom frameworks, configuring and deploying web apps on dedicated hardware or in the cloud and extensive experience in building a business to millions in yearly revenue.</p>
+
+                    {#<p>Pursuing a multi-disciplinary approach in school, he has a BA in Computer Science and extensive work</p>#}
+
+                    <p>Ryan formed Mathematic to help upstart design firms and agencies cross the rapidly evolving technological divide and stabilize their web operations.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col2">
+            <img src="/static/img/about/greenport.jpg" alt="Greenport, NY">
+            
+            <h2>Our Hood</h2>
+            <p>A small seaside town on the tip of the North Fork, Greenport is a short hop away from metropolitan New York and known for it's seafood and wine...</p>
+        </div>
+    </div>
+
+
+    
+
+    
+    {#we're currently growing our list of agencies and design firms.
+    
+    
+    <p>Stability and professionalism are the hallmarks of your development partner. Mathematic is an interactive development firm specialized in building, scaling and maintaining websites and web applications.</p>#}
+
+    
+</div>
     
     
 {% endblock %}

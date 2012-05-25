@@ -1,20 +1,27 @@
-{% extends 'layout.html' %}
+{% if is_pjax %}
+    {% extends 'layout_pjax.html' %}
+{% else %}
+    {% extends 'layout.html' %}
+{% endif %}
 
 {% block title %}{% endblock %}
 
-{% block content %}
-<div class="home-head">
+{% block body_class %}b_home{% endblock%}
+
+
+{% block head_content %}
+<div class="page-head home-head">
     <div class="ss__cont">
         <div class="ss__slide ss__slide1">
             <div class="bg" style="background-image: url(/static/img/bg1.jpg)"></div>
             <div class="info">
-                <a href="/work/makers/"><img src="/static/img/home/makers.png"></a>
+                <a href="/work/aol-makers/" class="ss-lnk lnk-a"><img src="/static/img/home/makers.png"></a>
             </div>
         </div>
         <div class="ss__slide ss__slide2">
             <div class="bg" style="background-image: url(/static/img/bg2.jpg)"></div>
             <div class="info">
-                Slide 2
+                CMS
             </div>
         </div>
     </div>
@@ -26,25 +33,48 @@
     </div>
     <a class="btn_continue">Continue</a>
 </div>
-
-<div class="wrapper main-content home-body">
-    <h2>Hello. We're Mathematic, a digital development agency, specializing in <span class="emp">engineering</span>, <span class="emp">scaling</span> and <span class="emp">maintaining</span> your ideas.</h2>
+{% endblock%}
+{% block content %}
+<div class="wrapper main-content page-body home-body grad_cont">
+    <h2>Hello. We're Mathematic, a digital development agency specializing in <span class="emp">engineering</span>, <span class="emp">scaling</span> and <span class="emp">maintaining</span> web applications and websites.</h2>
     
     <div class="subc group">
         <div class="col col1">
             <h3>What We Do</h3>
             <ul class="services">
-                <li>Back-end Development</li>
-                <li>Front-end Development</li>
-                <li>Performance, Security and Scaling</li>
-                <li>Cloud, mananged and dedicated hosting setup</li>
-                <li>Rapid response</li>
+                <li><a href="/services/#" class="intro_btn lnk-a" data-intro="1">Back-end Development</a></li>
+                <li><a href="/services/#" class="intro_btn lnk-a" data-intro="2">Front-end Development</a></li>
+                <li><a href="/services/#" class="intro_btn lnk-a" data-intro="3">Performance, Security and Scaling</a></li>
+                <li><a href="/services/#" class="intro_btn lnk-a" data-intro="4">Cloud, mananged and dedicated hosting setup</a></li>
+                <li><a href="/services/#" class="intro_btn lnk-a" data-intro="5">Rapid response</a></li>
             </ul>
             </div>
         <div class="col col2">
-            <h3>Our Promise</h3>
-
-            We believe in quality engineering, clear communication and rapid response. With over fifteen years of expertise in delivering websites and web applications of the highest caliber on time and on budget, Mathematic relies on time-proven processes to solve businesses' online needs.
+            <div class="intro-cont active" data-intro="0">
+                <h3>Our Promise</h3>
+                We believe in quality engineering, clear communication and rapid response. With over fifteen years of expertise in delivering websites and web applications of the highest caliber on time and on budget, Mathematic relies on time-proven processes to solve businesses' online needs.
+            </div>
+            <div class="intro-cont" data-intro="1">
+                <h3>Back-end Development</h3>
+                We select the right tools for the job based on your requirements, maintainability and capabilities. We pride ourselves on our ability to emphasize speed, security and maintainability. And while we have our technology stack preferences, our clients will maintain that we are able to get quickly caught up to speed on whatever the project requires.
+            </div>
+            <div class="intro-cont" data-intro="2">
+                <h3>Front-end Development</h3>
+                We recognize the importance of your brand and 
+            </div>
+            <div class="intro-cont" data-intro="3">
+                <h3>Performance, Security and Scaling</h3>
+                In this day and age, there are no excuses for slow-loading websites. We start with analysis of your existing infrastructure and application codebase and quickly set up analytics to find bottlenecks. We then set upFrom performance and security audits and recommendations to 
+            </div>
+            <div class="intro-cont" data-intro="4">
+                <h3>Cloud, managed and dedicated hosting setup</h3>
+                We have a proven track record of setting up secure and performant hosting solutions for a wide range of properties. From small-serve boutique websites to platforms serving millions of viewers, we can select the correct platform for your needs and have you up and running.
+            </div>
+            <div class="intro-cont" data-intro="5">
+                <h3>Rapid Response</h3>
+                With the project due yesterday, it's all hands on deck. We can step in, quickly learn your codebase and launch the site with the features you need.
+            </div>
+            
         </div>
         <div class="col col3">
             <h3>Get In Touch</h3>
@@ -62,15 +92,15 @@
         </div>
     </div>
 
-<br><br><br>
-    <div class="nam33e">
+
+    {#<div class="nam33e">
         Subscribe to our mailing list
         <form action="/mailing-list" method="post">
             <input type="email" name="email">
 
             <p><input type="submit" value="Subscribe"></p>
         </form>
-    </div>
+    </div>#}
 
 </div>
 {% endblock %}

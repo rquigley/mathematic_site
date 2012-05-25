@@ -13,3 +13,6 @@ Tooling used:
 * Javascript modularization/namespacing using AMD/require.js
 * Testing using [Mocha](http://visionmedia.github.com/mocha)
 * Our own responsive layout driven plugins for common UX patterns such as [pagination](http://github.com/mathematic/pagination.js), [carousel](http://github.com/mathematic/carousel.js) and [resizing events](http://github.com/mathematic/windowResize.js).
+
+"You can actually make a coffee run at 11.30am because shit's so under control it's not even funny."
+Netty Devonshire, Project Manager at Gin Lane

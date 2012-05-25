@@ -1,59 +1,30 @@
-{% extends 'layout.html' %}
+{% if is_pjax %}
+    {% extends 'layout_pjax.html' %}
+{% else %}
+    {% extends 'layout.html' %}
+{% endif %}
 
 {% block title %}Our Work - {% endblock %}
 
+{% block body_class %}b_work{% endblock%}
+
 {% block content %}
-<div class="work-obj">
-    <div class="i">
-        
+
+<div class="wrapper main-content page-body grad_cont">
+    <h1>Our Work</h1>
+
+    <div class="group">
+        {% for c in clients %}
+            <a href="{{ url_for('work_client', client=c.url) }}" class="work-obj lnk-a">
+                <span class="i" style="background-image: url(/static/img/work/{{ c.image_path }}/thumb.jpg)"></span>
+                <span class="info">
+                    <em>{{ c.client }}</em>
+                    {{ c.project }}
+                </span>
+            </a>
+        {% endfor %}
+
     </div>
-    <a href="http://northforked.org">North Fork Education Initiative</a>
-    Technologies used: Symfony2, MySQL, Custom CMS<br>
-    NFEI approached Mathematic to design and build sites for desktop and mobile browsing.
 </div>
-
-<div class="work-obj">
-    <a href="http://galleray.com">Galleray</a>
-    Mathematic was hired to implement the frontend of this social exhibition site.<br>
-    Technologies used: Sass, Javascript, Django
-</div>
-
-<div class="work-obj">
-    <a href="http://makers.com">MAKERS</a>
-    A collaboration between PBS and AOL, Mathematic was brought on by Gin Lane to implement a responsive layout. <br>
-    Technologies used: Javascript, Sass, AMD
-    
-    The new MAKERS.com website uses adaptive and fluid layouts to assure that the site looks good on any device and at any screen resolution. Built to take advantage in the latest that web browsers have to offer, text, images, and design elements are dynamically scaled on the fly for optimum readability and elegance.
-
-    Anything more technical than that is sort of irrelevant from a PR point of view, but for your own purposes, the tooling used to build the site includes:
-    -Sass for modularization of stylesheets and to ease cross-browser development
-    -Javascript modularization/namespacing using the AMD (Asynchronous Module Definition) API and require.js
-    -Responsive layout driven plugins for common UX patterns such as pagination, carousel and collapsable content.
-</div>
-
-
-Do this?
-Clients
-Gin Lane Media
--Thrillist
--Select NY
--MAKERS
-
-3atmospheres
--Galleray
--Grubot
-
-North Fork Education Initiative
-
-Medium
-Art management web application
-
-Emerson Communications Group
-
-
-
-
-
-
 
 {% endblock %}

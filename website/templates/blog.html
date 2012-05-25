@@ -1,12 +1,19 @@
-{% extends 'layout.html' %}
+{% if is_pjax %}
+    {% extends 'layout_pjax.html' %}
+{% else %}
+    {% extends 'layout.html' %}
+{% endif %}
 
 {% block title %}{% endblock %}
 
 {% block content %}
+
+<div class="wrapper main-content page-body">
     <div class="about">
         Ryan is a developer and designer based out of Brooklyn and the North Fork of Long Island
 
         <a href="http://twitter.com/#!/ryanquigley">Twitter</a>
         <a href="http://www.linkedin.com/pub/ryan-quigley/6/530/b5a">LinkedIn</a>
     </div>
+</div>
 {% endblock %}
