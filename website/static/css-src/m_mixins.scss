@@ -3,10 +3,22 @@
     -webkit-box-shadow: $offset_x $offset_y $blur_radius $color; /* Saf3.0+, Chrome */
     box-shadow: $offset_x $offset_y $blur_radius $color; /* Opera 10.5, IE 9.0 */
 }
+@mixin shadow_inner($offset_x, $offset_y, $blur_radius, $color) {
+    -moz-box-shadow: inset $offset_x $offset_y $blur_radius $color; /* FF3.5+ */
+    -webkit-box-shadow: inset $offset_x $offset_y $blur_radius $color; /* Saf3.0+, Chrome */
+    box-shadow: inset $offset_x $offset_y $blur_radius $color; /* Opera 10.5, IE 9.0 */
+}
 @mixin no_shadow() {
     -moz-box-shadow: none; /* FF3.5+ */
     -webkit-box-shadow: none; /* Saf3.0+, Chrome */
     box-shadow: none; /* Opera 10.5, IE 9.0 */
+}
+
+@mixin opacity($num) {
+    $num2: $num*100;
+    opacity: $num;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$num2})';
+    filter: alpha(opacity=$num2);
 }
 
 @mixin transition($time, $property: all, $ease: ease-out, $delay: 0s) {
@@ -57,7 +69,7 @@
 }
 
 @mixin sprite($top: 0, $left: 0, $color: transparent) {
-    background: $color url(../img/sprite.v7.png) $top $left no-repeat;
+    background: $color url(../../img/sprite.v7.png) $top $left no-repeat;
 }
 
 @mixin gradient($start, $end, $direction: vertical, $start_pos: 0%, $end_pos: 100%) {
@@ -88,6 +100,12 @@
     -webkit-border-radius: $px;
     -moz-border-radius: $px;
     border-radius: $px;
+}
+
+@mixin ir() {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .group:before,

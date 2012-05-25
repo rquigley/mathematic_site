@@ -1,26 +1,146 @@
-{% extends 'layout.html' %}
+{% if is_pjax %}
+    {% extends 'layout_pjax.html' %}
+{% else %}
+    {% extends 'layout.html' %}
+{% endif %}
 
-{% block title %}Our Services - {% endblock %}
+{% block title %}Services - {% endblock %}
+
+{% block body_class %}b_services{% endblock%}
 
 {% block content %}
-Strategy
-We advise our clients on technology, UI and UX and base recommendations on current and future trends.
+<div class="wrapper main-content page-body grad_cont services-content">
+    <h1>Services</h1>
+    <div class="head">
+        We'll help you complete and launch your applications and websites better and faster than ever before.
+    </div>
+    
+    {#<p>Over the last 15 years, we've honed techniques for building scalable and performant systems. We're no
+    
+    <p>Working in Python (using Django, Flask and Pyramid) and PHP (using Symfony2), PostgreSQL and MySQL</p>#}
 
+    <div class="group">
+        <div class="submenu">
+            <h3>Services</h3>
+            <ul class="submenu-list">
+                <li><a href="#back-end-development" class="lnk lnk-back-end-development">Back-end Development</a></li>
+                <li><a href="#front-end-development" class="lnk">Front-end Development</a></li>
+                <li><a href="#performance" class="lnk">Performance, Security and Scaling</a></li>
+                <li><a href="#hosting" class="lnk">Hosting setup</a></li>
+                <li><a href="#rapid-response" class="lnk">Rapid response</a></li>
+            </ul>
+        </div>
 
-Design
--UI
--Mobile and Desktop
--Responsive and Liquid layouts
+        <div class="scrolling-contents">
+            <div class="service-cont content-back-end-development">
+                <a class="target" name="back-end-development"></a>
 
-Development
-We choose the right technologies based on the needs of each project.
-Some of technologies that we've had experience with
-Application and website development
-Python - Django, Flask, Pyramid
-PHP - Symfony2
-RabbitMQ, Redis, MySQL, Postgres, MongoDB
-Frontend Jquery, MooTools, ExtJS
-Implementing best practices
+                <h3>Back-end Development</h3>
 
+                <p>We've built our business on Python, but select the right tool for the job based on your requirements, maintainability and capabilities. We pride ourselves on our ability to emphasize speed, security and maintainability. And while we have our technology stack preferences, our clients will maintain that we are able to get quickly caught up to speed on whatever the project requires.</p>
+                
+                <div class="group features">
+                    <div class="col col1">
+                        <h4>Our preferred back-end technologies</h4>
+                        <p>We're not at all riveted to these, but given our druthers, we prefer to use some of the following</p>
+                    </div>
+                    
+                    <div class="col col2">
+                        <div class="proj-type">
+                            <em>Rapid prototyping</em>
+                            <ul>
+                                <li>Python</li>
+                                <li>Flask, Django (Python)</li>
+                                <li>Postgres, Sqlite, MongoDB for Data</li>
+                                <li>Heroku for deployment</li>
+                            </ul>
+                        </div>
+                        <div class="proj-type">
+                            <em>Small websites and applications</em>
+                            <ul>
+                                <li>Python, PHP</li>
+                                <li>Django, Flask, Pyramid (Python)</li>
+                                <li>Symfony2 (PHP)</li>
+                                <li>Testing via unittest2, PHPUnit</li>
+                                <li>Postgres, MySQL for Persistent Data</li>
+                                <li>Memcached, Redis, Varnish for Caching</li>
+                                <li>Heroku, AWS, Dedicated for hosting</li>
+                                <li>Celery, Resque, SQS for asynchronous work</li>
+                            </ul>
+                        </div>
+                        <div class="proj-type last">
+                            <em>Large websites and applications</em>
+                            <ul>
+                                <li>Django, Flask, Pyramid (Python)</li>
+                                <li>Symfony2 (PHP)</li>
+                                <li>Testing via unittest2, PHPUnit</li>
+                                <li>Postgres, MySQL for Persistent Data</li>
+                                <li>Memcached, Redis, Varnish for Caching</li>
+                                <li>AWS, Dedicated for hosting</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="service-cont content-front-end-development" data-intro="2">
+                <a class="target" name="front-end-development"></a>
+                <h3>Front-end Development</h3>
+                <p>We utilize our intimate knowledge of design, UX and technology to build applications and websites that put users first. With the emergence of mobile browsers, there has been a transference of business logic from the back-end to the front-end. We've developed robust practices</p>
+                
+                Our preferred technologies:<br>
+                <div class="features">
+                    <ul>
+                        <li>Python</li>
+                        <li>Flask, Django (Python)</li>
+                        <li>Postgres, Sqlite, MongoDB for Data</li>
+                        <li>Heroku for deployment</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="service-cont content-performance" data-intro="3">
+                <a class="target" name="performance"></a>
+                <h3>Performance, Security and Scaling</h3>
+                In this day and age, there are no excuses for slow-loading websites. We start with analysis of your existing infrastructure and application codebase and quickly set up analytics to find bottlenecks. We then set upFrom performance and security audits and recommendations to 
+            </div>
+            <div class="service-cont content-hosting" data-intro="4">
+                <a class="target" name="hosting"></a>
+                <h3>Cloud, managed and dedicated hosting setup</h3>
+                We have a proven track record of setting up secure and performant hosting solutions for a wide range of properties. From small-serve boutique websites to platforms serving millions of viewers, we can select the correct platform for your needs and have you up and running.
+            </div>
+            <div class="service-cont content-rapid-response" data-intro="5">
+                <a class="target" name="rapid-response"></a>
+                <h3>Rapid Response</h3>
+                With the project due yesterday, it's all hands on deck. We can step in, quickly learn your codebase and launch the site with the features you need.
+            </div>
 
+            <div class="group">
+                <div class="col col1">
+                    <h2>Strategy</h2>
+                    We advise our clients on technology, UI and UX and base recommendations on current and future trends.
+                </div>
+                <div class="col col2">
+                    <h2>Design</h2>
+                    -UI<br>
+                    -Mobile and Desktop<br>
+                    -Responsive and Liquid layouts<br>
+                </div>
+                <div class="col col2">
+                    <h2>Development</h2>
+                    We choose the right technologies based on the needs of each project.<br>
+                    Some of technologies that we've had experience with<br>
+                    Application and website development<br>
+                    Python - Django, Flask, Pyramid<br>
+                    PHP - Symfony2<br>
+                    RabbitMQ, Redis, MySQL, Postgres, MongoDB<br>
+                    Frontend Jquery, MooTools, ExtJS<br>
+                    Implementing best practices<br>
+                </div>
+            </div>
+
+        </div>
+      
+    </div>
+
+</div>
 {% endblock %}

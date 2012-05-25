@@ -176,23 +176,6 @@ blockquote {
 }
 
 /*
- * Addresses styling not present in S5, Chrome
- */
-
-dfn {
-    font-style: italic;
-}
-
-/*
- * Addresses styling not present in IE6/7/8/9
- */
-
-mark {
-    background: #ff0;
-    color: #000;
-}
-
-/*
  * Addresses margins set differently in IE6/7
  */
 
@@ -226,29 +209,6 @@ pre {
 }
 
 /*
- * 1. Addresses CSS quotes not supported in IE6/7
- * 2. Addresses quote property not supported in S4
- */
-
-/* 1 */
-
-q {
-    quotes: none;
-}
-
-/* 2 */
-
-q:before,
-q:after {
-    content: '';
-    content: none;
-}
-
-small {
-    font-size: 75%;
-}
-
-/*
  * Prevents sub and sup affecting line-height in all browsers
  * gist.github.com/413930
  */
@@ -279,14 +239,11 @@ sub {
  */
 
 dl,
+dd,
 menu,
 ol,
 ul {
-    margin: 1em 0;
-}
-
-dd {
-    margin: 0 0 0 40px;
+    margin: 0;
 }
 
 /*
@@ -296,7 +253,7 @@ dd {
 menu,
 ol,
 ul {
-    padding: 0 0 0 40px;
+    padding: 0;
 }
 
 /*
@@ -334,18 +291,6 @@ svg:not(:root) {
 }
 
 
-/* =============================================================================
-   Figures
-   ========================================================================== */
-
-/*
- * Addresses margin not present in IE6/7/8/9, S5, O11
- */
-
-figure {
-    margin: 0;
-}
-
 
 /* =============================================================================
    Forms
@@ -367,19 +312,6 @@ fieldset {
     border: 1px solid #c0c0c0;
     margin: 0 2px;
     padding: 0.35em 0.625em 0.75em;
-}
-
-/*
- * 1. Corrects color not being inherited in IE6/7/8/9
- * 2. Corrects text not wrapping in FF3
- * 3. Corrects alignment displayed oddly in IE6/7
- */
-
-legend {
-    border: 0; /* 1 */
-    padding: 0;
-    white-space: normal; /* 2 */
-    *margin-left: -7px; /* 3 */
 }
 
 /*

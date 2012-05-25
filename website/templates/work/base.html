@@ -1,16 +1,25 @@
-{% extends 'layout.html' %}
+{% if is_pjax %}
+    {% extends 'layout_pjax.html' %}
+{% else %}
+    {% extends 'layout.html' %}
+{% endif %}
+
 
 {% block title %}Our Work - {% block project_page_title %}{% endblock %} - {% endblock %}
 
+{% block body_class %}b_work{% endblock%}
+
 {% block content %}
 
-<div class="work-ind">
-    {% block project_title %}North Fork Education Initiative{% endblock %}
-    {% block project_url %}http://northforked.org{% endblock %}
+<div class="wrapper main-content page-body grad_cont">
+    <h1>{% block project_title %}Our Work{% endblock %}</h1>
 
-    {% block project_content %}
+    <div class="work-ind">
+        {% block project_url %}http://northforked.org{% endblock %}
+
+        {% block project_content %}
         
-    {% endblock %}
+        {% endblock %}
+    </div>
 </div>
-
 {% endblock %}
