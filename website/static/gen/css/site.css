@@ -443,6 +443,22 @@ h1 {
     color: #b9c4d3; }
     .site-nav a:hover {
       color: #fff; }
+  .site-nav .lnk-a {
+    display: inline-block; }
+    .site-nav .lnk-a:before {
+      display: inline-block;
+      margin: 0 12px 0 0;
+      vertical-align: top;
+      content: '';
+      width: 16px;
+      height: 16px;
+      background: transparent url(../../img/sprite.v7.png) -167px -58px no-repeat; }
+  .site-nav .lnk-services:before {
+    background-position: -167px -81px; }
+  .site-nav .lnk-about:before {
+    background-position: -167px -108px; }
+  .site-nav .lnk-contact:before {
+    background-position: -167px -133px; }
 
 .logo_cnt {
   padding: 15px;
@@ -647,9 +663,9 @@ footer {
   margin: 0 0 2em 0;
   padding: 0 0 2em 0;
   border-bottom: 1px #cfcfcf solid; }
-.services-content .features ul {
-  padding: 0 0 0 15px;
-  list-style: square outside; }
+  .services-content .service-cont ul {
+    padding: 0 0 0 15px;
+    list-style: square outside; }
 .services-content h4 {
   margin: 0;
   font-size: 15px;
@@ -672,18 +688,15 @@ footer {
   padding: 0 50px 0 0; }
 .about-content .col2 {
   padding: 20px;
-  background: #e6e9ed;
+  background: #f9f9f9;
   border-top: 1px #cfcfcf solid;
-  border-left: 1px #cfcfcf solid;
-  border-bottom: 1px #dfdfdf solid;
-  border-right: 1px #dfdfdf solid;
   font-size: 12px;
   font-size: 0.75rem; }
   .about-content .col2 img {
     max-width: 100%; }
 .about-content .people {
-  margin: 20px 0 0 0;
-  padding: 20px 0 0 0;
+  margin: 50px 0 0 0;
+  padding: 50px 0 0 0;
   border-top: 1px #cfcfcf solid; }
   .about-content .people h3 {
     margin: 0; }
@@ -694,6 +707,34 @@ footer {
     text-decoration: none;
     font-size: 12px;
     font-size: 0.75rem; }
+
+.contact-content {
+  font-size: 14px;
+  font-size: 0.875rem; }
+  .contact-content .label {
+    color: #444; }
+  .contact-content .icn {
+    display: inline-block; }
+    .contact-content .icn:before {
+      display: inline-block;
+      margin: 0 7px 0 0;
+      vertical-align: middle;
+      content: '';
+      width: 16px;
+      height: 16px;
+      background: transparent url(../../img/sprite.v7.png) -167px 2px no-repeat; }
+  .contact-content .icn_tel:before {
+    background-position: -167px -14px; }
+  .contact-content .icn_twitter:before {
+    background-position: -167px -32px; }
+
+#contact-map {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin: 20px 0;
+  border: 1px #ddd solid; }
 
 @media screen and (min-width: 480px) {
   html, body {
@@ -706,7 +747,7 @@ footer {
     padding: 20px 30px 60px 30px; }
 
   h1 {
-    margin: 20px 0 20px 0;
+    margin: 20px 0 6px 0;
     font-size: 48px;
     font-size: 3rem;
     font-weight: 100;
@@ -797,6 +838,8 @@ footer {
         -webkit-transition: all 0.2s ease-out 0s;
         -ms-transition: all 0.2s ease-out 0s;
         transition: all 0.2s ease-out 0s; }
+    .site-nav .lnk-a:before {
+      display: none; }
 
   .b_work .site-nav .lnk-work,
   .b_about .site-nav .lnk-about,
@@ -1093,13 +1136,18 @@ footer {
       /* Opera 10.5, IE 9.0 */ }
 
   .page-body .head {
-    margin: 0 0 20px 0;
+    margin: 10px 0 40px 0;
     font-size: 32px;
     font-size: 2rem;
-    line-height: 1.2;
+    line-height: 1.1;
     font-weight: 500;
     color: #e72170;
-    text-shadow: 0 1px 0 #fff; }
+    /*text-shadow: 0 1px 0 #fff;*/ }
+  .page-body .col {
+    float: left; }
+  .page-body .col-topped {
+    padding-top: 20px;
+    border-top: 1px #cfcfcf solid; }
   .page-body .submenu {
     display: block;
     float: left;
@@ -1195,11 +1243,13 @@ footer {
     color: #333;
     background: #fdfdfd;
     padding: 20px;
-    border: 1px #eee solid; }
-  .services-content .col {
-    float: left;
-    /*width: 33%;
-                padding: 0 20px 0 0;*/ }
+    border: 1px #eee solid;
+    -moz-box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.2);
+    /* FF3.5+ */
+    -webkit-box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.2);
+    /* Saf3.0+, Chrome */
+    box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.2);
+    /* Opera 10.5, IE 9.0 */ }
   .services-content .col1 {
     width: 30.75%;
     margin-right: 3.8%; }
@@ -1212,7 +1262,19 @@ footer {
     padding: 0 50px 0 0; }
   .about-content .col2 {
     float: left;
-    width: 40%; } }
+    width: 40%; }
+
+  .contact-content .col1 {
+    width: 22.05%;
+    margin-right: 3.8%; }
+  .contact-content .col2 {
+    width: 22.05%;
+    margin-right: 3.8%; }
+  .contact-content .col3 {
+    width: 48%; }
+
+  #contact-map {
+    display: block; } }
 @media screen and (min-width: 680px) {
   .main-content {
     padding: 20px 40px 60px 40px; }

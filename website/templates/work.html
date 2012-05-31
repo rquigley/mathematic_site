@@ -13,6 +13,12 @@
 <div class="wrapper main-content page-body grad_cont">
     <h1>Our Work</h1>
 
+    <div class="head">
+        We love the work that we've done. Here are the projects we can talk about.
+    </div>
+
+    {#<p>Front</p>#}
+
     <div class="group">
         {% for c in clients %}
             <a href="{{ url_for('work_client', client=c.url) }}" class="work-obj lnk-a">

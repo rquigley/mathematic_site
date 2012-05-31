@@ -24,7 +24,7 @@ define([
     var pageContentsEl = $('#page-contents');
     var currentView;
 
-    core.window.init([0, 680, 980]);
+    core.window.init([0, 480, 680, 980]);
     window.m = core;
 
     var init = function() {
@@ -44,6 +44,9 @@ define([
                 break;
             case 'services':
                 require(["views/services"], onViewLoaded);
+                break;
+            case 'contact':
+                require(["views/contact"], onViewLoaded);
                 break;
             default:
                 break;

@@ -66,7 +66,7 @@ define([
             }
         };
         
-        core.subscribe('core.window.breakpoint', onHomeSlideshowBreakpoint);
+        core.subscribe('window.breakpoint', onHomeSlideshowBreakpoint);
         
         homeSlideshow = slideshow(headEl);
         homeSlideshow.init();
