@@ -478,8 +478,9 @@ footer {
         margin: 20px 0 6px 0;
         @include font-size(48);
         font-weight: 100;
-        /*letter-spacing: 0.03em;*/
         text-shadow: 0 1px 0 #fff;
+        text-rendering: optimizeLegibility;
+        letter-spacing: 0.05em;
     }
     .site-head {
         position: absolute;
@@ -895,28 +896,33 @@ footer {
     //
     .work-obj {
         float: left;
-        width: 25%;
+        width: 30.75%;
+        margin:0 3.8% 3.8% 0;
         height: 200px;
-        padding: 0 20px 20px 0;
         @include font-size(13);
         font-weight: 600;
+        border: 1px #e0e0e0 solid;
         @include transition(0.3s);
 
+        &:nth-child(3) {
+            margin-right: 0;
+        }
 
         .i {
-            position: relative;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
-            border: 1px #e0e0e0 solid;
-            border-bottom: none;
-            background-size: auto;
+/*            background-size: auto;*/
             @include shadow(0, 1px, 3px, rgba(0,0,0,0.2));
         }
         .info {
-            position: relative;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             height: 60px;
             margin: -60px 0 0 0;
             padding: 10px 8px 4px 10px;
@@ -924,8 +930,6 @@ footer {
             color: #cfcfcf;
             z-index: 1;
             @include transition(0.3s);
-            border-left: 1px #c0c0c0 solid;
-            border-right: 1px #c0c0c0 solid;
 
         }
         em {

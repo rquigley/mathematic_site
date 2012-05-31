@@ -751,8 +751,9 @@ footer {
     font-size: 48px;
     font-size: 3rem;
     font-weight: 100;
-    /*letter-spacing: 0.03em;*/
-    text-shadow: 0 1px 0 #fff; }
+    text-shadow: 0 1px 0 #fff;
+    text-rendering: optimizeLegibility;
+    letter-spacing: 0.05em; }
 
   .site-head {
     position: absolute;
@@ -1174,27 +1175,28 @@ footer {
 
   .work-obj {
     float: left;
-    width: 25%;
+    width: 30.75%;
+    margin: 0 3.8% 3.8% 0;
     height: 200px;
-    padding: 0 20px 20px 0;
     font-size: 13px;
     font-size: 0.813rem;
     font-weight: 600;
+    border: 1px #e0e0e0 solid;
     -moz-transition: all 0.3s ease-out 0s;
     -o-transition: all 0.3s ease-out 0s;
     -webkit-transition: all 0.3s ease-out 0s;
     -ms-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s; }
+    .work-obj:nth-child(3) {
+      margin-right: 0; }
     .work-obj .i {
-      position: relative;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
-      border: 1px #e0e0e0 solid;
-      border-bottom: none;
-      background-size: auto;
+      /*            background-size: auto;*/
       -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
       /* FF3.5+ */
       -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -1202,7 +1204,10 @@ footer {
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
       /* Opera 10.5, IE 9.0 */ }
     .work-obj .info {
-      position: relative;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 60px;
       margin: -60px 0 0 0;
       padding: 10px 8px 4px 10px;
@@ -1213,9 +1218,7 @@ footer {
       -o-transition: all 0.3s ease-out 0s;
       -webkit-transition: all 0.3s ease-out 0s;
       -ms-transition: all 0.3s ease-out 0s;
-      transition: all 0.3s ease-out 0s;
-      border-left: 1px #c0c0c0 solid;
-      border-right: 1px #c0c0c0 solid; }
+      transition: all 0.3s ease-out 0s; }
     .work-obj em {
       font-weight: 500;
       color: #fff; }
