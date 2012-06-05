@@ -16,11 +16,11 @@ define([
             setupSubmenu();
         }, 600);
     }
-    
+
     function setupSubmenu() {
         submenuEl = $('.submenu');
         waypointSelParentEl = $('.scrolling-contents');
-        
+
         var options = {
             offset: 100
         };
@@ -31,7 +31,7 @@ define([
         recomputeSubmenuHeight();
         win.scroll(onPageScroll).scroll();
     }
-    
+
     function onPageScroll() {
         if ((document.documentElement.scrollTop || document.body.scrollTop) >= submenuTop) {
             if (isSubmenuFixed === true) {
@@ -47,12 +47,12 @@ define([
             submenuEl.removeClass('fixed');
         }
     }
-    
+
     function recomputeSubmenuHeight() {
         submenuTop = submenuEl.offset().top + 10;
         onPageScroll();
     }
-    
+
     function onWaypoint(ev) {
         var el = $(ev.target);
         var target = el.find('.target')[0].name;
@@ -61,7 +61,7 @@ define([
         submenuEl.find('[href=#'+target+']').addClass('active');
         //console.log(ev.target);
     }
-    
+
     function unregister() {
         waypointSelParentEl.find(waypointSel).waypoint('destroy');
     }

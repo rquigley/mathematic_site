@@ -8,6 +8,10 @@ app.debug = True
 
 app.jinja_env.filters['timestamped'] = timestamped
 
+app.jinja_env.globals.update({
+    'env': os.getenv('mm_env', 'production')
+})
+
 clients = [
     {
         'url': 'aol-makers',

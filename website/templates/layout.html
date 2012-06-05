@@ -62,13 +62,13 @@
     
 </footer>
 
-{% if 1 %}
-    <script data-main="/static/js-src/main.js" src="/static/js-src/lib/require/require.js"></script>
-
+{% if env == 'dev' %}
+<script data-main="/static/js-src/main.js" src="/static/js-src/lib/require/require.js"></script>
 {% else %}
-
+<script data-main="/static/gen/js/main.js" src="/static/gen/js/main.js"></script>
 {% endif %}
 
+{% if env == 'production' %}
 <script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-31512349-1']);
@@ -79,5 +79,6 @@ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www')
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 </script>
+{% endif %}
 </body>
 </html>

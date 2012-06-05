@@ -4,7 +4,7 @@ define([
     'plugins/slideshow'
 ], function($, core, slideshow) {
     "use strict";
-    
+
     var headEl;
     var bodyEl;
     var lastServiceEl;
@@ -19,12 +19,12 @@ define([
         bodyEl = $('.home-body');
 
         setupSlideshow();
-        
+
         setupContinueButton();
-        
+
         setupIntro();
     }
-    
+
     function setupSlideshow() {
         var homeSlideshow;
         var curEl;
@@ -38,7 +38,7 @@ define([
                     'top': 320
                 });
             }
-            
+
             curEl = ss.curEl.find('.info');
             curEl.css({
                 'opacity': 0,
@@ -65,27 +65,27 @@ define([
                 }
             }
         };
-        
+
         core.subscribe('window.breakpoint', onHomeSlideshowBreakpoint);
-        
+
         homeSlideshow = slideshow(headEl);
         homeSlideshow.init();
-        
+
         onHomeSlideshowBreakpoint(core.getViewport());
     }
-    
+
     function setupContinueButton() {
         headEl.on('click', '.btn_continue', onButtonContinue);
     }
-    
+
     function onButtonContinue() {
         $("html,body").animate(
-    	    {
-    	        scrollTop: bodyEl.position().top
-    	    }
-    	);
+            {
+                scrollTop: bodyEl.position().top
+            }
+        );
     }
-    
+
     function setupIntro() {
         defaultServiceTitle = "Our Promise";
         serviceTitleEl = $('.col2 h3');
@@ -95,7 +95,7 @@ define([
         bodyEl.on('mouseover', '.services .intro_btn', onIntroButtonOver);
         bodyEl.on('mouseleave', '.services', onLeaveServices);
     }
-    
+
     function onIntroButtonOver(ev) {
         var el = ev.target;
 
@@ -104,7 +104,7 @@ define([
 
         lastServiceEl.removeClass('active');
         currServiceEl.addClass('active');
-        
+
         serviceTitleEl.text(el.innerHTML);
 
         //selectedEl = $('.intro-cont[data-intro='+el.attr('data-intro')+']');
@@ -113,7 +113,7 @@ define([
         //$('.intro-cont.active').removeClass('active');
         //$('.intro-cont[data-intro='+el.attr('data-intro')+']').addClass('active');
     }
-    
+
     function onLeaveServices(ev) {
         var el = $(ev.target);
 
@@ -122,16 +122,16 @@ define([
         $('.intro-cont.active').removeClass('active');
         currServiceEl.addClass('active');
     }
-    
+
     function hideSlideshow() {
         $('.home-head').children().fadeOut(300);
     }
-    
+
     function unregister() {
         bodyEl.off('mouseover', '.services .intro_btn', onIntroButtonOver);
         bodyEl.off('mouseleave', '.services', onLeaveServices);
         headEl.off('click', '.btn_continue', onButtonContinue);
-        
+
         // TODO: unsubscribe/destroy slideshow
     }
 

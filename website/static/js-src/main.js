@@ -1,20 +1,24 @@
-require.config({
+requirejs.config({
     paths: {
         jquery: 'lib/jquery',
-        underscore: 'lib/lodash.min',
+        //underscore: 'lib/lodash.min',
+        underscore: 'lib/underscore',
         memphis: 'lib/memphis/memphis'
         //underscore: 'lib/underscore',
         //mediator: 'lib/aura/mediator',
         //text: 'lib/require/text'
     },
-    priority: ['jquery']
+    //shim: {
+    //    'lib/plugins/pjax': ['jquery'],
+    //    'lib/plugins/waypoints': ['jquery']
+    //}
 });
 
 define([
     'jquery',
     'memphis',
     'lib/plugins/pjax',
-    'lib/plugins/waypoints',
+    'lib/plugins/waypoints'
 ], function($, core) {
     "use strict";
 
@@ -24,10 +28,10 @@ define([
     var pageContentsEl = $('#page-contents');
     var currentView;
 
-    core.window.init([0, 480, 680, 980]);
-    window.m = core;
-
     var init = function() {
+        core.window.init([0, 480, 680, 980]);
+        window.m = core;
+
         setupPjax();
         
         dispatchUrl();
@@ -51,7 +55,7 @@ define([
             default:
                 break;
         }
-    }
+    };
 
     var setupPjax = function() {
         var doc = $(document);

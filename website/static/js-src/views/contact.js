@@ -98,10 +98,10 @@ define([
         map.setMapTypeId('mm_style');
 
         var image = new google.maps.MarkerImage('/static/img/map_marker.png',
-    		new google.maps.Size(32, 32),
-    		new google.maps.Point(0,0),
-    		new google.maps.Point(16, 16)
-    	);
+            new google.maps.Size(32, 32),
+            new google.maps.Point(0,0),
+            new google.maps.Point(16, 16)
+        );
         var marker1 = new google.maps.Marker({
             position: new google.maps.LatLng(41.096482, -72.366392),
             map: map,

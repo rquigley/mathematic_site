@@ -109,9 +109,6 @@ define([
         };
 
         var setBreakpoints = function(bps) {
-            if (toString.call(bps) != '[object Array]') {
-                throw "Breakpoints must be an array";
-            }
             breakpoints = bps;
         };
 
