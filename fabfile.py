@@ -1,25 +1,67 @@
 import os
-import re
+#import re
 from tempfile import NamedTemporaryFile
-from fabric.api import local, env, settings, abort, run, cd
+from fabric.api import local, env, settings, run, cd, sudo
+from fabric.contrib.project import rsync_project
 
-env.project_dir = '/var/www/mathematic'
+env.project_dir = os.getcwd()
+env.build_dir = '/tmp/mathematic_site_build'
 
 env.hosts = ['mathematicinc.com']
 
-env.static_path = './mathematic_site/static'
+env.static_path = './website/static'
 env.sass_bin = 'sass'
 env.yui_bin = 'java -jar ./project_files/yuicompressor.jar'
 
 def deploy():
-    update_source()
+    tmp_dir = 'mathematic_deploy'
+    remote_dir = '/var/www/mathematic'
 
-    build_from_source()
+    #sudo('rm -rf %s' % (tmp_dir))
+    rsync_project(
+        tmp_dir,
+        '%s/' % env.build_dir,
+        #exclude=RSYNC_EXCLUDE,
+        delete=True,
+        #extra_opts=extra_opts,
+    )
+    sudo('chown -R www-data:www-data %s' % (tmp_dir))
+    sudo('rm -rf %s.old' % (remote_dir))
+    sudo('mv %s %s.old' % (remote_dir, remote_dir))
+    sudo('mv %s %s' % (tmp_dir, remote_dir))
+    sudo('touch %s/config/uwsgi/production.ini' % (remote_dir))
+    sudo('service nginx reload')
+    #update_source()
+
+    #build_from_source()
     #-rm build/last
     #-mkdir building
 
 
     #local("touch config.wsgi")
+
+def deploy2():
+    local('scp')
+    #project.upload_project(env.build_dir, )
+    #require('root', provided_by=('staging', 'production'))
+    #if env.environment == 'production':
+    #    if not console.confirm('Are you sure you want to deploy production?',
+    #                           default=False):
+    #        utils.abort('Production deployment aborted.')
+    #extra_opts = '--omit-dir-times'
+    #rsync_project(
+    #    env.root,
+    #    exclude=RSYNC_EXCLUDE,
+    #    delete=True,
+    #    extra_opts=extra_opts,
+    #)
+
+def sass_watch():
+    local('sass --scss --watch website/static/css-src/base.scss:website/static/gen/css/site.css')
+
+def bootstrap():
+    #http://yui.zenfs.com/releases/yuicompressor/yuicompressor-2.4.7.zip
+    pass
 
 def update_source():
     src_dir = '%s/src' % env.project_dir
@@ -31,50 +73,49 @@ def update_source():
     with cd(src_dir):
         run("git pull origin master")
 
-def build_from_source():
-    src_dir = '%s/src' % env.project_dir
-    build_dir = '%s/build/building' % env.project_dir
-
-    with settings(warn_only = True):
-        if run("test -d %s" % build_dir).succeeded:
-            run('rm -rf %s' % build_dir)
-
-    run('mkdir %s' % build_dir)
-
-    run('rsync -a --exclude .git %s/ %s' % (src_dir, build_dir))
-
-
-    #system("rsync -a --exclude \"project_files\" --exclude \"httpd-dev.conf\" --exclude .svn $SITE_SVN_DIR/$site_name/ $SITE_PRODUCTION_DIR/$site_name");
-
-
 def build():
-    #build_js()
-    #copy_js()
-    update_css()
+    if os.path.isdir('%s' % env.build_dir):
+        local('rm -rf %s' % env.build_dir)
 
-def sass_watch():
-    local('sass --scss --watch website/static/css-src/base.scss:website/static/gen/css/site.css')
+    local('mkdir %s' % env.build_dir)
 
-def bootstrap():
-    #http://yui.zenfs.com/releases/yuicompressor/yuicompressor-2.4.7.zip
-    pass
+    local("rsync -a --exclude '.git' --exclude '*.pyc' --exclude 'project_files' --exclude 'website/static/css-src' %s/ %s" % (env.project_dir, env.build_dir))
 
-def build_js():
-    local('node ./project_files/r.js -o %s/js-src/app.build.js' % env.static_path)
+    build_css('%s/%s' % (env.build_dir, env.static_path))
+    build_js('%s/%s' % (env.build_dir, env.static_path))
 
-def copy_js():
+
+def build_js(out_path = None):
+    if out_path is None:
+        out_path = env.static_path
+
+    if not os.path.isdir('%s/gen/js' % out_path):
+        local('mkdir %s/gen/js' % out_path)
+
     requirejs_path = '%s/js-src/lib/require/require.js' % env.static_path
-    mainjs_path = '%s/js-build/main.js' % env.static_path
+    mainjs_path_tmp = '%s/gen/js/main.js' % env.static_path
+    mainjs_path = '%s/gen/js/main.js' % out_path
 
-    f = NamedTemporaryFile()
-    f.write(";\n;")
+    f = NamedTemporaryFile(delete=False)
 
-    local('cat %s %s > %s/js/main.js' % (requirejs_path, mainjs_path, env.static_path))
+    local('node ./project_files/r.js -o %s/js-src/app.build.js' % (env.static_path))
 
-def update_css():
+    local('cat %s %s > %s' % (requirejs_path, mainjs_path_tmp, f.name))
+    local('rm -rf %s/gen/js/*' % (out_path))
+    local('mv %s %s' % (f.name, mainjs_path))
+    
+    f.close()
+
+def build_css(out_path = None):
+    if out_path is None:
+        out_path = env.static_path
+
+    if not os.path.isdir('%s/gen/css' % out_path):
+        local('mkdir %s/gen/css' % out_path)
+
     in_path = '%s/css-src/base.scss' % env.static_path
     #ie8_specific_in_path = '%s/css-src/ie8_specific.css' % env.static_path
-    out_path = '%s/gen/css/style.css' % env.static_path
+    out_path = '%s/gen/css/site.css' % out_path
     #out_ie_path = '%s/gen/css/style_ie.css' % env.static_path
 
     f = NamedTemporaryFile()
