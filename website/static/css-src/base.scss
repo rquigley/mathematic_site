@@ -20,12 +20,12 @@ body {
 
 h1, h2, h3 {
     font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 100;
 }
 h1 {
     margin: 0 0 20px 0;
     @include font-size(36);
     line-height: 1;
-    font-weight: 100;
     color: #111;
 }
 
@@ -288,9 +288,9 @@ footer {
     h2 {
         margin: 0 0 2em 0;
         @include font-size(18);
-        font-weight: 100;
         color: #111;
         text-transform: none;
+        font-weight: 100;
     }
     .emp {
         font-weight: 500;
@@ -478,7 +478,6 @@ footer {
     h1 {
         margin: 20px 0 6px 0;
         @include font-size(48);
-        font-weight: 100;
         text-shadow: 0 1px 0 #fff;
         text-rendering: optimizeLegibility;
         letter-spacing: 0.05em;
@@ -750,6 +749,8 @@ footer {
             &:hover {
                 bottom: -12px;
                 @include opacity(.9);
+                -webkit-filter: grayscale(30%);
+                -moz-filter: grayscale(30%);
             }
         }
     }
@@ -757,7 +758,6 @@ footer {
         h2 {
             margin: 20px 0 40px 0;
             @include font-size(48);
-            font-weight: 100;
             text-shadow: 0 1px 0 #fff;
         }
         h3 {
@@ -854,9 +854,6 @@ footer {
             border-top: 1px #cfcfcf solid;
         }
 
-        h2, h3 {
-
-        }
         .submenu {
             display: block;
             float: left;
@@ -940,13 +937,14 @@ footer {
 
         &:hover {
             .i {
-                @include opacity(0.9);
+                -webkit-filter: grayscale(50%) blur(1px);
+                -moz-filter: grayscale(50%) blur(1px);
             }
             .info {
-                height: 63px;
-                margin-top: -63px;
+                height: 200px;
+                margin-top: -200px;
                 background: #000;
-                @include transition(0.1s);
+                @include transition(0.3s);
             }
         }
     }

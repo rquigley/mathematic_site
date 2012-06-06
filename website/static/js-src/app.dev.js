@@ -10,7 +10,8 @@ requirejs.config({
         //mediator: 'lib/aura/mediator',
         //text: 'lib/require/text'
         pjax: 'lib/plugins/pjax',
-        waypoints: 'lib/plugins/waypoints'
+        waypoints: 'lib/plugins/waypoints',
+        jquerypp: 'lib/plugins/jquerypp'
     }
 });
 

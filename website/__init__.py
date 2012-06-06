@@ -30,14 +30,14 @@ clients = [
         'project': 'MAKERS',
     },
     {
-        'url': 'nfei-website',
+        'url': 'galleray-app',
         'template': 'galleray.html',
         'image_path': 'galleray',
         'client': 'Galleray',
         'project': 'Application',
     },
     {
-        'url': 'galleray-app',
+        'url': 'nfei-website',
         'template': 'nfei.html',
         'image_path': 'nfei',
         'client': 'North Fork Education Initiative',

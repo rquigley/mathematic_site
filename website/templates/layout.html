@@ -9,7 +9,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+{% if env == 'dev' %}
 <link rel="stylesheet" href="{{ '/static/gen/css/site.css'|timestamped }}">
+{% else %}
+{#<link rel="stylesheet" href="/static/gen/css/site.v##.css">#}
+<link rel="stylesheet" href="{{ '/static/gen/css/site.css'|timestamped }}">
+{% endif %}
 
 {#<script type="text/javascript" src="http://use.typekit.com/ybd6ymi.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>#}
