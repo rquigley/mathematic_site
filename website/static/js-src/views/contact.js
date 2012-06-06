@@ -16,12 +16,13 @@ define([
         onBreakpoint(core.getViewport());
 
         if (true === mapVisible) {
-            if (window.hasOwnProperty('google') && window.google.hasOwnProperty('maps')) {
-                $("#contact-map").empty();
-                onMapLibLoaded();
-            } else {
-                require(["http://maps.google.com/maps/api/js?sensor=false&callback=googleMapCallback"]);
-            }
+            require(["http://maps.google.com/maps/api/js?sensor=false&callback=googleMapCallback"]);
+            //if (window.hasOwnProperty('google') && window.google.hasOwnProperty('maps')) {
+            //    $("#contact-map").empty();
+            //    onMapLibLoaded();
+            //} else {
+            //    require(["googlemaps"], onMapLibLoaded);
+            //}
         }
     }
 

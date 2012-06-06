@@ -2,7 +2,6 @@ from flask import current_app
 from datetime import datetime
 from os import path
 import re
-import translitcodec
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 def slugify(text, delim=u'-'):

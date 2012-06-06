@@ -1,15 +1,24 @@
 from flask import Flask, request, render_template, abort
-from utility import slugify, friendly_time, timestamped
+#from utility import slugify, friendly_time, timestamped
+from utility import timestamped
 import re
 import os
 
 app = Flask(__name__)
-app.debug = True
+
+env = os.getenv('mm_env', 'production')
+#env = 'production'
+if env == 'dev':
+    app.debug = True
+
+#import logging
+#logging.basicConfig(filename='/var/www/mathematic/site.log',level=logging.DEBUG)
+#logging.basicConfig(filename='site.log',level=logging.DEBUG)
 
 app.jinja_env.filters['timestamped'] = timestamped
 
 app.jinja_env.globals.update({
-    'env': os.getenv('mm_env', 'production')
+    'env': env
 })
 
 clients = [
@@ -73,7 +82,8 @@ def work_client(client):
 
 @app.route("/work/")
 def work():
-    print "X-PJAX" in request.headers
+    #logging.info('pjax:%s' % ("X-PJAX" in request.headers))
+    #logging.info(str(request.headers))
     return render_template('work.html',
                 clients = clients,
                 is_pjax = "X-PJAX" in request.headers,
@@ -81,6 +91,8 @@ def work():
 
 @app.route("/services/")
 def services():
+    #logging.info('pjax:%s' % ("X-PJAX" in request.headers))
+    #logging.info(str(request.headers))
     return render_template('services.html',
                 is_pjax = "X-PJAX" in request.headers,
                 )

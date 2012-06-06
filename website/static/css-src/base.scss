@@ -101,7 +101,7 @@ h1 {
     width: 122px;
     height: 128px;
     margin: 0 auto;
-    background: url(../../img/sprite.png) 0 0 no-repeat;
+    background: url(../../img/sprite.v7.png) 0 0 no-repeat;
     @include ir;
 
     @include transition(0.3s, all);
@@ -144,7 +144,8 @@ footer {
 
     @include shadow(0, 1px, 10px, rgba(0,0,0,0.5));
 
-    .lnk {
+    // Not .lnk because of iOS transformation of telephone #
+    a {
         color: $footer_color;
         @include transition(0.4s);
         text-decoration: none;

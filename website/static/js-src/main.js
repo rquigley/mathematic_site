@@ -1,24 +1,8 @@
-requirejs.config({
-    paths: {
-        jquery: 'lib/jquery',
-        //underscore: 'lib/lodash.min',
-        underscore: 'lib/underscore',
-        memphis: 'lib/memphis/memphis'
-        //underscore: 'lib/underscore',
-        //mediator: 'lib/aura/mediator',
-        //text: 'lib/require/text'
-    },
-    //shim: {
-    //    'lib/plugins/pjax': ['jquery'],
-    //    'lib/plugins/waypoints': ['jquery']
-    //}
-});
-
 define([
     'jquery',
     'memphis',
-    'lib/plugins/pjax',
-    'lib/plugins/waypoints'
+    'pjax',
+    'waypoints'
 ], function($, core) {
     "use strict";
 

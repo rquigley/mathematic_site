@@ -1,4 +1,3 @@
-define(['jquery'], function ($) {
 // jquery.pjax.js
 // copyright chris wanstrath
 // https://github.com/defunkt/jquery-pjax
@@ -687,4 +686,3 @@ if ( !$.support.pjax ) {
 }
 
 })(jQuery);
-});
