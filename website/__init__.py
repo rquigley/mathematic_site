@@ -130,6 +130,57 @@ def static_versioned(directory, filepath):
 
     return app.send_static_file(directory+'/'+filepath)
 
+@app.route('/sitemap.xml')
+def sitemap():
+    #url_root = request.url_root[:-1]
+    url_root = 'http://mathematicinc.com'
+    
+    rules = [
+        {
+            'url': '/',
+            #'lastmod': '',
+            'changefreq': 'weekly',
+            'priority': '1',
+        },
+        {
+            'url': '/work/',
+            #'lastmod': '',
+            'changefreq': 'weekly',
+            'priority': '0.9',
+        },
+        {
+            'url': '/services/',
+            #'lastmod': '',
+            'changefreq': 'weekly',
+            'priority': '0.6',
+        },
+        {
+            'url': '/about/',
+            #'lastmod': '',
+            'changefreq': 'weekly',
+            'priority': '0.6',
+        },
+        {
+            'url': '/contact/',
+            #'lastmod': '',
+            'changefreq': 'weekly',
+            'priority': '0.6',
+        },
+    ]
+    for c in clients:
+        rules.append({
+            'url': '/work/%s/' % c['url'],
+            #'lastmod': '',
+            'changefreq': 'weekly',
+            'priority': '0.5',
+        })
+    
+    #rules = app.url_map.iter_rules()
+    return render_template('sitemap.xml',
+        url_root = url_root,
+        rules = rules
+    )
+
 @app.errorhandler(404)
 def page_not_found(error):
     return 'nonono', 404

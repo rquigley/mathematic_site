@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for r in rules %}
+    <url>
+        <loc>{{url_root}}{{ r.url }}</loc>
+        {%- if r.lastmod -%}<lastmod>{{url_root}}{{ r.lastmod }}</lastmod>{% endif -%}
+        {%- if r.changefreq -%}<changefreq>{{ r.changefreq }}</changefreq>{% endif -%}
+        {%- if r.priority -%}<priority>{{ r.priority }}</priority>{% endif %}
+    </url>
+{% endfor -%}
+</urlset>

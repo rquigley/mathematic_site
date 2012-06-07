@@ -1,2 +1,3 @@
+Sitemap: http://mathematicinc.com/sitemap.xml
 User-agent: *
 Disallow:
