@@ -891,25 +891,32 @@ footer {
     min-height: 100%; }
     .home-head.in-transition {
       min-height: 0; }
-    .home-head .ss__slide1 {
-      display: block; }
-      .home-head .ss__slide1 .info img {
-        /*width: 80%;*/ }
-    .home-head .ss__slide2 .info {
+    .home-head .ss__slide .info {
       background: rgba(0, 0, 0, 0.4);
-      padding: 10px 20px;
-      color: #fff;
-      font-size: 16px;
-      font-size: 1rem; }
-    .home-head .ss__slide2 .ss-lnk {
+      padding: 10px 20px 13px 20px;
+      color: #fff; }
+    .home-head .ss__slide .descript {
+      font-size: 11px;
+      font-size: 0.688rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #eaeaea;
+      color: rgba(255, 255, 255, 0.8); }
+    .home-head .ss__slide .ss-lnk {
+      display: block;
       font-size: 48px;
       font-size: 3rem;
       font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 100;
+      line-height: 1;
+      text-rendering: optimizeLegibility;
+      letter-spacing: 0.05em;
+      margin: 0 0 4px 0;
       color: #fff;
       text-decoration: none; }
-      .home-head .ss__slide2 .ss-lnk:hover {
-        color: #e72170; }
+      .home-head .ss__slide .ss-lnk:hover {
+        color: #e72170;
+        text-shadow: 0 0 6px rgba(255, 255, 255, 0.5); }
     .home-head .ss-lnk {
       -moz-transition: all 0.4s ease-out 0s;
       -o-transition: all 0.4s ease-out 0s;
