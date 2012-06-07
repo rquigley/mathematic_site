@@ -2,7 +2,8 @@ define([
     'jquery',
     'memphis',
     'pjax',
-    'waypoints'
+    'waypoints',
+    'transit'
 ], function($, core) {
     "use strict";
 
@@ -106,7 +107,7 @@ define([
             }, 200);
 
 
-            pageHeadEl.animate({
+            pageHeadEl.transit({
                 height: destHeight
             }, 900, function() {
                 pageHeadEl
@@ -139,11 +140,11 @@ define([
         // 8. set pageContentsEl.height, overflow-y (and x) default
 
 
-        pageContentsEl.fadeOut(400, function() {
+        pageContentsEl.transit({opacity: 0}, 400, function() {
             dispatchUrl();
             
             pageContentsEl.html(pageDiv.find('.page-content').html());
-            pageContentsEl.fadeIn();
+            pageContentsEl.transit({opacity: 1}, 400);
             pageDiv.remove();
         });
     };

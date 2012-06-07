@@ -11,8 +11,13 @@ requirejs.config({
         //text: 'lib/require/text'
         pjax: 'lib/plugins/pjax',
         waypoints: 'lib/plugins/waypoints',
-        jquerypp: 'lib/plugins/jquerypp'
-    }
+        transit: 'lib/plugins/transit'
+    },
+    shim: {
+        'pjax': ['jquery'],
+        'waypoints': ['jquery'],
+        'transit': ['jquery']
+    },
 });
 
 require(["main"]);

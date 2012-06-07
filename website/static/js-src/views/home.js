@@ -1,7 +1,8 @@
 define([
     'jquery',
     'memphis',
-    'plugins/slideshow'
+    'plugins/slideshow',
+    'transit'
 ], function($, core, slideshow) {
     "use strict";
 
@@ -33,7 +34,7 @@ define([
 
         core.subscribe('slideshow.onTransition.start', function(ss) {
             if (ss.lastIdx !== ss.curIdx) {
-                ss.lastEl.find('.info').animate({
+                ss.lastEl.find('.info').transit({
                     'opacity': 0,
                     'top': 320
                 });
@@ -47,7 +48,7 @@ define([
             });
         });
         core.subscribe('slideshow.onTransition.end', function(ss) {
-            curEl.animate({
+            curEl.transit({
                 'opacity': 1,
                 'left': '24%',
                 'top': 300
@@ -124,7 +125,7 @@ define([
     }
 
     function hideSlideshow() {
-        $('.home-head').children().fadeOut(300);
+        $('.home-head').children().transit({opacity: 0}, 300);
     }
 
     function unregister() {

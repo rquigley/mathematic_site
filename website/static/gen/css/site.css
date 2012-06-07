@@ -892,6 +892,23 @@ footer {
       display: block; }
       .home-head .ss__slide1 .info img {
         /*width: 80%;*/ }
+    .home-head .ss__slide2 {
+      display: block; }
+      .home-head .ss__slide2 .info {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 10px 20px;
+        color: #fff;
+        font-size: 16px;
+        font-size: 1rem; }
+      .home-head .ss__slide2 .ss-lnk {
+        font-size: 48px;
+        font-size: 3rem;
+        font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 100;
+        color: #fff;
+        text-decoration: none; }
+        .home-head .ss__slide2 .ss-lnk:hover {
+          color: #e72170; }
     .home-head .ss-lnk {
       -moz-transition: all 0.4s ease-out 0s;
       -o-transition: all 0.4s ease-out 0s;
@@ -1226,8 +1243,9 @@ footer {
       -webkit-filter: grayscale(50%) blur(1px);
       -moz-filter: grayscale(50%) blur(1px); }
     .work-obj:hover .info {
-      height: 200px;
-      margin-top: -200px;
+      height: 70px;
+      margin-top: -70px;
+      padding: 13px 15px;
       background: #000;
       -moz-transition: all 0.3s ease-out 0s;
       -o-transition: all 0.3s ease-out 0s;

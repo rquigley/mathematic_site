@@ -12,11 +12,13 @@
         //mediator: 'lib/aura/mediator',
         //text: 'lib/require/text'
         pjax: 'lib/plugins/pjax',
-        waypoints: 'lib/plugins/waypoints'
+        waypoints: 'lib/plugins/waypoints',
+        transit: 'lib/plugins/transit'
     },
     shim: {
         'pjax': ['jquery'],
-        'waypoints': ['jquery']
+        'waypoints': ['jquery'],
+        'transit': ['jquery']
     },
     findNestedDependencies: true,
     removeCombined: true,

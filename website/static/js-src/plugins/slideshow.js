@@ -6,9 +6,9 @@
 */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        define(['jquery', 'underscore', 'memphis'], factory);
+        define(['jquery', 'underscore', 'memphis', 'transit'], factory);
     } else {
-        root.slideshow = factory(root.jquery, root.underscore, root.memphis);
+        root.slideshow = factory(root.jquery, root.underscore, root.memphis, root.transit);
     }
 }(this, function ($, _, memphis) {
     "use strict";
@@ -170,12 +170,19 @@
 
             if (!skipTransition) {
                 if (undefined !== idx) {
-                    lastSlide.fadeOut(transitionTime);
+                    lastSlide.transit({opacity: 0}, transitionTime, function() {
+                        lastSlide.css({
+                            'display': 'none'
+                        })
+                    });
                 }
 
                 curSlide
-                    .css('display', 'none')
-                    .fadeIn(transitionTime, function() {
+                    .css({
+                        'display': 'block',
+                        'opacity':0
+                    })
+                    .transit({opacity: 1}, transitionTime, function() {
                         memphis.publish('slideshow.onTransition.end', {
                             curIdx: curIdx,
                             curEl: curSlide,

@@ -607,6 +607,27 @@ footer {
                 /*width: 80%;*/
             }
         }
+        .ss__slide2 {
+            display: block;
+
+            .info {
+                background: rgba(0,0,0,0.4);
+                padding: 10px 20px;
+                color: #fff;
+                @include font-size(16);
+            }
+            .ss-lnk {
+                @include font-size(48);
+                font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-weight: 100;
+                color: #fff;
+                text-decoration: none;
+
+                &:hover {
+                    color: $link_color;
+                }
+            }
+        }
         .ss-lnk {
             @include transition(0.4s);
 
@@ -941,8 +962,9 @@ footer {
                 -moz-filter: grayscale(50%) blur(1px);
             }
             .info {
-                height: 200px;
-                margin-top: -200px;
+                height: 70px;
+                margin-top: -70px;
+                padding: 13px 15px;
                 background: #000;
                 @include transition(0.3s);
             }
