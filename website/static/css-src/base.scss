@@ -463,6 +463,15 @@ footer {
     border: 1px #ddd solid;
 }
 
+//
+// Pages: Work
+//
+.work-ind {
+    ul {
+        list-style: square inside;
+    }
+}
+
 
 @media screen and (min-width: 480px) {
     html, body {
@@ -608,7 +617,7 @@ footer {
             }
         }
         .ss__slide2 {
-            display: block;
+            //display: block;
 
             .info {
                 background: rgba(0,0,0,0.4);

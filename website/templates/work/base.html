@@ -12,17 +12,19 @@
 {% block content %}
 
 <div class="wrapper main-content page-body grad_cont">
-    <h1>{% block project_title %}Our Work{% endblock %}</h1>
-    <div class="year">{% block project_year %}1900{% endblock %}</div>
+    <h1>{{ project_title }}</h1>
+    <div class="year">{{ project_year }}</div>
     
     
-    <div class="group">
+    {#<div class="group">
         Overview
         Responsive Layout
         Tech Specs
-    </div>
+    </div>#}
     <div class="work-ind">
-        {% block project_url %}http://northforked.org{% endblock %}
+        {% if project_url %}
+            <a href="{{ project_url }}" target="_blank">View Website</a>
+        {% endif %}
 
         {% block project_content %}
         

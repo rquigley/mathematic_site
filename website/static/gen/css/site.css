@@ -736,6 +736,9 @@ footer {
   margin: 20px 0;
   border: 1px #ddd solid; }
 
+.work-ind ul {
+  list-style: square inside; }
+
 @media screen and (min-width: 480px) {
   html, body {
     background: #f2f3ed; }
@@ -892,23 +895,21 @@ footer {
       display: block; }
       .home-head .ss__slide1 .info img {
         /*width: 80%;*/ }
-    .home-head .ss__slide2 {
-      display: block; }
-      .home-head .ss__slide2 .info {
-        background: rgba(0, 0, 0, 0.4);
-        padding: 10px 20px;
-        color: #fff;
-        font-size: 16px;
-        font-size: 1rem; }
-      .home-head .ss__slide2 .ss-lnk {
-        font-size: 48px;
-        font-size: 3rem;
-        font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 100;
-        color: #fff;
-        text-decoration: none; }
-        .home-head .ss__slide2 .ss-lnk:hover {
-          color: #e72170; }
+    .home-head .ss__slide2 .info {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+      color: #fff;
+      font-size: 16px;
+      font-size: 1rem; }
+    .home-head .ss__slide2 .ss-lnk {
+      font-size: 48px;
+      font-size: 3rem;
+      font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 100;
+      color: #fff;
+      text-decoration: none; }
+      .home-head .ss__slide2 .ss-lnk:hover {
+        color: #e72170; }
     .home-head .ss-lnk {
       -moz-transition: all 0.4s ease-out 0s;
       -o-transition: all 0.4s ease-out 0s;
