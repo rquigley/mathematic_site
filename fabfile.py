@@ -79,7 +79,7 @@ def build():
 
     local('mkdir %s' % env.build_dir)
 
-    local("rsync -a --exclude '.git' --exclude '*.pyc' --exclude 'project_files' --exclude 'website/static/css-src' %s/ %s" % (env.project_dir, env.build_dir))
+    local("rsync -a --exclude '.git' --exclude '*.pyc' --exclude '*.un~' --exclude '.DS_Store' --exclude 'project_files' --exclude 'website/static/css-src' %s/ %s" % (env.project_dir, env.build_dir))
 
     build_css('%s/%s' % (env.build_dir, env.static_path))
     build_js('%s/%s' % (env.build_dir, env.static_path))
@@ -88,6 +88,9 @@ def build():
 def build_js(out_path = None):
     if out_path is None:
         out_path = env.static_path
+
+    # Something is screwed up with require.js. It's hanging on minifying require.js
+    local('rm -rf %s/gen/js/*' % (env.static_path))
 
     if not os.path.isdir('%s/gen/js' % out_path):
         local('mkdir %s/gen/js' % out_path)
