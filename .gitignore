@@ -1,6 +1,6 @@
 *.un~
 *.pyc
 .sass-cache/
-;website/static/gen
-website/static/gen/js
+website/static/gen
+;website/static/gen/js
 project_files/*.jar
