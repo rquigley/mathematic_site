@@ -57,6 +57,10 @@ define([
     var onNavClick = function(ev) {
         var el, href, tmpDiv;
 
+        // If a modifier is used, use existing behavior
+        if (ev.which > 1 || ev.metaKey || ev.ctrlKey ) {
+            return;
+        }
         ev.preventDefault();
 
         el = $(ev.target);
