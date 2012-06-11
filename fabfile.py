@@ -30,7 +30,7 @@ def deploy():
     sudo('mv %s %s.old' % (remote_dir, remote_dir))
     sudo('mv %s %s' % (tmp_dir, remote_dir))
     sudo('touch %s/config/uwsgi/production.ini' % (remote_dir))
-    sudo('service nginx reload')
+    sudo('service nginx configtest && service nginx reload')
     #update_source()
 
     #build_from_source()
@@ -79,7 +79,7 @@ def build():
 
     local('mkdir %s' % env.build_dir)
 
-    local("rsync -a --exclude '.git' --exclude '*.pyc' --exclude '*.un~' --exclude '.DS_Store' --exclude 'project_files' --exclude 'website/static/css-src' %s/ %s" % (env.project_dir, env.build_dir))
+    local("rsync -a --exclude '.git' --exclude '*.pyc' --exclude '*.un~' --exclude '.DS_Store' --exclude 'project_files' --exclude 'website/static/css-src' --exclude 'website/static/js-src' --exclude 'website/content' --exclude '.sass-cache' %s/ %s" % (env.project_dir, env.build_dir))
 
     build_css('%s/%s' % (env.build_dir, env.static_path))
     build_js('%s/%s' % (env.build_dir, env.static_path))
