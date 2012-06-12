@@ -68,17 +68,29 @@ def hello():
 @app.route("/work/<client>/")
 def work_client(client):
     def find_client(url):
-        for c in clients:
+        for idx, c in enumerate(clients):
             if c['url'] == url:
-                return c
+                next_idx = 0 if idx + 1 == len(clients) else idx + 1
+                return (
+                    c,
+                    {
+                        'next': clients[next_idx],
+                        'prev': clients[idx-1],
+                    }
+                )
 
-    found_client = find_client(client)
-    if found_client:
-        return render_template(os.path.join('work', found_client['template']),
-                    is_pjax = "X-PJAX" in request.headers,
-                    )
-    else:
+    (found_client, prev_next) = find_client(client)
+    if not found_client:
         abort(404)
+        return
+
+
+    
+
+    return render_template(os.path.join('work', found_client['template']),
+                is_pjax = "X-PJAX" in request.headers,
+                prev_next = prev_next,
+                )
 
 @app.route("/work/")
 def work():

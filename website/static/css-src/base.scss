@@ -3,7 +3,7 @@
 
 $min_width_tablet: 480px;
 $body_text_color: #333;
-$link_color: #e72170;
+$link_color: #D53E7A;
 $link_hover_color: #111;
 
 html {
@@ -142,7 +142,7 @@ footer {
     color: $footer_color;
     white-space: nowrap;
 
-    @include shadow(0, 1px, 10px, rgba(0,0,0,0.5));
+    @include shadow(0, 1px, 10px, rgba(0,0,0,0.2));
 
     // Not .lnk because of iOS transformation of telephone #
     a {
@@ -218,7 +218,8 @@ footer {
 }
 .page-body {
     z-index: 0;
-    line-height: 1.6;
+    @include font-size(15);
+    line-height: 1.65;
 
     a {
         color: $link_color;
@@ -391,17 +392,14 @@ footer {
 // Pages: About
 //
 .about-content {
-    h3 {
-
-    }
     .col1 {
         padding: 0 50px 0 0;
     }
     .col2 {
         padding: 20px;
-        background: #f9f9f9;
+        background: #fff;
         //@include gradient(#E72170, #fff);
-        border-top: 1px #cfcfcf solid;
+        border: 1px #ddd solid;
         //border-left: 1px #cfcfcf solid;
         //border-bottom: 1px #dfdfdf solid;
         //border-right: 1px #dfdfdf solid;
@@ -409,7 +407,9 @@ footer {
         @include font-size(12);
 
         img {
+            border: 1px #ddd solid;
             max-width: 100%;
+            margin: 0 0 10px 0;
         }
     }
     .people {
@@ -497,9 +497,9 @@ footer {
     h1 {
         margin: 20px 0 6px 0;
         @include font-size(48);
-        text-shadow: 0 1px 0 #fff;
+        //text-shadow: 0 1px 0 #fff;
         text-rendering: optimizeLegibility;
-        letter-spacing: 0.05em;
+        //letter-spacing: 0.05em;
     }
     .site-head {
         position: absolute;
@@ -607,9 +607,10 @@ footer {
     }
 
     .grad_cont {
-        border-left: 1px #e7e7e7 solid;
-        border-right: 1px #efefef solid;
+        border-left: 1px #ddd solid;
+        border-right: 1px #ddd solid;
         @include gradient(#f9faf4, #fff);
+        @include shadow(0, 0, 10px, rgba(0,0,0,0.1));
     }
 
     //
@@ -622,19 +623,31 @@ footer {
             min-height: 0;
         }
 
-        //.ss__slide1 {
-        //    display: block;
-        //
-        //    .info img {
-        //        /*width: 80%;*/
-        //    }
-        //}
         .ss__slide {
             .info {
-                background: rgba(0,0,0,0.4);
+                @include gradient(rgba(0,0,0,0.4), rgba(24,0,0,0.3));
                 @include shadow_inner(0, 0, 5px, rgba(0, 0, 0, 0.3));
+                @include border_radius(4px);
                 padding: 10px 20px 13px 20px;
                 color: #fff;
+                text-decoration: none;
+
+                &:hover {
+                    padding: 20px 20px 3px 20px;
+                    @include no_shadow;
+                    @include transition(0.4s);
+                    background: rgba(255,255,255,0.7);
+
+                    .ss-lnk {
+                        @include transition(0.2s);
+
+                        color: $link_color;
+                        text-shadow: 0 0 6px rgba(0,0,0, 0.1);
+                    }
+                    .descript {
+                        opacity: 0;
+                    }
+                }
             }
             .descript {
                 @include font-size(11);
@@ -649,16 +662,10 @@ footer {
                 font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
                 font-weight: 100;
                 line-height: 1;
-                text-rendering: optimizeLegibility;
-                letter-spacing: 0.05em;
+                //text-rendering: optimizeLegibility;
+                //letter-spacing: 0.05em;
                 margin: 0 0 4px 0;
                 color: #fff;
-                text-decoration: none;
-
-                &:hover {
-                    color: $link_color;
-                    text-shadow: 0 0 6px rgba(255,255,255, 0.5);
-                }
             }
         }
         .ss-lnk {
@@ -762,7 +769,7 @@ footer {
             z-index: -1;
             background-repeat: no-repeat;
             background-position: center center;
-            background-attachment: scroll;
+            background-attachment: fixed;
     	    background-size: cover;
         }
         .info {
@@ -816,7 +823,7 @@ footer {
         }
         h3 {
             padding-top: 20px;
-            border-top: 1px #cfcfcf solid;
+            border-top: 1px #ccc dotted;
         }
 
         .col {
@@ -886,7 +893,7 @@ footer {
 
 	    &.active {
             height: 255px;
-            @include shadow(0, 2px, 7px, rgba(0,0,0,0.2));
+            @include shadow(0, 2px, 7px, rgba(0,0,0,0.15));
         }
     }
 
@@ -905,7 +912,7 @@ footer {
         }
         .col-topped {
             padding-top: 20px;
-            border-top: 1px #cfcfcf solid;
+            border-top: 1px #ddd dotted;
         }
 
         .submenu {
@@ -920,6 +927,7 @@ footer {
             &.fixed {
                 position: fixed;
                 top: 20px;
+                max-width: 145px;
             }
 
             .lnk {
@@ -936,7 +944,7 @@ footer {
 
         }
         .scrolling-contents {
-            margin-left: 28.85%;
+            margin-left: 25.85%;
             width: 71.15%;
             float: left;
             position: relative;
@@ -1109,5 +1117,12 @@ footer {
 @media screen and (min-width: 980px) {
     .main-content {
         padding: 20px 50px 60px 50px;
+    }
+    .page-body {
+        .submenu {
+            &.fixed {
+                max-width: 185px;
+            }
+        }
     }
 }

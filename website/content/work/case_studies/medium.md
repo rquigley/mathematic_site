@@ -1,4 +1,6 @@
-Medium is a back-office solution for museums and large galleries built to manage art assets, sales and collectors/contacts. Mathematic designed and built the original system and was brought back ....
+Medium is a back-office solution for museums and large galleries built to manage art inventory, sales and collectors/contacts. It 
+
+Mathematic designed and built the original system which was licensed in 2011 was brought back ....
 
 
  including inventory, collector/contact management,
