@@ -1203,6 +1203,9 @@ footer {
             margin-bottom: 0.4em;
         }
         .prev_next {
+            position: absolute;
+            top: 20px;
+            right: 65px;
             text-align: right;
         }
         .info {

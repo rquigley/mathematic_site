@@ -6,27 +6,20 @@
 {% set project_url = "http://www.makers.com" %}
 {% set project_year ="2012" %}
 
-{% block project_content %}
-<div class="proj_images">
-    <div class="proj_images_mask">
-        <div class="ss__cont">
-            <img src="/static/img/work/makers/1.jpg" class="ss__slide ss__slide1" alt="">
-            <img src="/static/img/work/makers/2.jpg" class="ss__slide ss__slide2" alt="">
-            <img src="/static/img/work/makers/3.jpg" class="ss__slide ss__slide3" alt="">
-        </div>
-        <a class="ss__prev"><span class="icn"></span></a>
-        <a class="ss__next"><span class="icn"></span></a>
-    </div>
-    <div class="ss__counter-cont">
-        <div class="ss__counter"></div>
-    </div>
-</div>
+{% block project_slideshow %}
+    <img src="/static/img/work/makers/1.jpg" class="ss__slide ss__slide1" alt="Masthead">
+    <img src="/static/img/work/makers/2.jpg" class="ss__slide ss__slide2" alt="Full Page">
+    <img src="/static/img/work/makers/3.jpg" class="ss__slide ss__slide3" alt="Profile">
+{% endblock %}
 
+{% block project_content %}
 <p>The MAKERS project is a historic video initiative between PBS and AOL featuring exclusive access to trailblazing women such as Hillary Clinton, Katie Couric, Marissa Mayer, Sandra Day O'Conner, Condoleezza Rice, Sheryl Sandberg, Gloria Steinem, Martha Stwewart and Barbara Walters.</p>
 
 <p><a href="http://www.MAKERS.com">MAKERS.com</a> uses an adaptive and fluid layout to assure that the site looks good on any device and at any screen resolution. Built to take advantage in the latest that web browsers have to offer, text, images and design elements are dynamically scaled on the fly for optimum readability.</p>
 
 <p>Mathematic was hired by <a href="http://www.ginlanemedia.com" target="_blank">Gin Lane Media</a> for front-end development including the implementation of a responsive layout. Gin Lane oversaw design, creative direction and project management. Back-end development was provided by <a href="http://www.asheavenue.com" target="_blank">Ashe Avenue</a> in tandem with Gin Lane.</p>
+
+
 
 <p>Tooling used:</p>
 
@@ -38,4 +31,11 @@
 <li>Our own responsive layout driven plugins for common UX patterns such as <a href="http://github.com/mathematic/pagination.js">pagination</a>, <a href="http://github.com/mathematic/carousel.js">carousel</a> and <a href="http://github.com/mathematic/windowResize.js">resizing events</a>.</li>
 </ul>
 
+{% endblock %}
+
+{% block project_quote %}
+<blockquote>
+    Ryan and Mathematic were extremely professional, informative and solution orientated from start through launch every day on call. The project was extremely complex with many moving parts and technical components. Their experience, insight and attention to detail helped bring to life not only a functional and stable digital video platform, but one that is beautiful and is receiving tremendous feedback and engagement on.<br>
+    <span class="byline">&mdash; Emmett Shine, President, Gin Lane Media</span>
+</blockquote>
 {% endblock %}

@@ -28,6 +28,29 @@
             {% endif %}
         </div>
         <div class="work-ind">
+            <div class="proj_images">
+                <div class="proj_images_mask">
+                    <div class="ss__cont">
+                        {% block project_slideshow %}
+
+                        {% endblock %}
+                    </div>
+                    <a class="ss__prev"><span class="icn"></span></a>
+                    <a class="ss__next"><span class="icn"></span></a>
+                </div>
+                <div class="ss__counter-cont">
+                    <div class="ss__counter"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="group">
+        <div class="info">
+            {% block project_quote %}
+            &nbsp;
+            {% endblock %}
+        </div>
+        <div class="work-ind">
             {% block project_content %}
 
             {% endblock %}
