@@ -11,26 +11,27 @@
 
 {% block content %}
 
-<div class="wrapper main-content page-body grad_cont">
-    <a class="lnk-a" href="{{ url_for('work_client', client=prev_next.prev.url) }}" title="{{ prev_next.prev.client }}: {{ prev_next.prev.project }}">Previous</a>
-    <a class="lnk-a" href="{{ url_for('work_client', client=prev_next.next.url) }}" title="{{ prev_next.next.client }}: {{ prev_next.next.project }}">Next</a>
-    <h1>{{ project_title }}</h1>
-    <div class="year">{{ project_year }}</div>
-    
-    
-    {#<div class="group">
-        Overview
-        Responsive Layout
-        Tech Specs
-    </div>#}
-    <div class="work-ind">
-        {% if project_url %}
-            <a href="{{ project_url }}" target="_blank">View Website</a>
-        {% endif %}
+<div class="wrapper main-content page-body grad_cont work-content">
+    <div class="prev_next">
+        <a class="lnk-a pn-lnk" href="{{ url_for('work_client', client=prev_next.prev.url) }}" title="{{ prev_next.prev.client }}: {{ prev_next.prev.project }}">Previous</a> &nbsp;
+        <a class="lnk-a pn-lnk" href="{{ url_for('work_client', client=prev_next.next.url) }}" title="{{ prev_next.next.client }}: {{ prev_next.next.project }}">Next</a>
+    </div>
 
-        {% block project_content %}
-        
-        {% endblock %}
+    <h1>{{ project_title }}</h1>
+
+    <div class="group">
+        <div class="info">
+            Project: {{ project_name }}<br>
+            Year: {{ project_year }}<br>
+            {% if project_url %}
+                <a href="{{ project_url }}" target="_blank">Launch {% if project_url_label %}{{ project_url_label }}{% else %}Website{% endif %}</a><br>
+            {% endif %}
+        </div>
+        <div class="work-ind">
+            {% block project_content %}
+
+            {% endblock %}
+        </div>
     </div>
 </div>
 {% endblock %}

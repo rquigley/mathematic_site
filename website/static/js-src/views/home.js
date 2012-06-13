@@ -12,6 +12,7 @@ define([
     var currServiceEl;
     var serviceTitleEl;
     var defaultServiceTitle;
+    var homeSlideshow;
 
     function init() {
         var ss;
@@ -27,7 +28,6 @@ define([
     }
 
     function setupSlideshow() {
-        var homeSlideshow;
         var curEl;
         var slideshowLive = null;
         var onHomeSlideshowBreakpoint;
@@ -105,12 +105,6 @@ define([
         currServiceEl.addClass('active');
 
         serviceTitleEl.text(el.innerHTML);
-
-        //selectedEl = $('.intro-cont[data-intro='+el.attr('data-intro')+']');
-        //
-        //console.log($('.intro-cont[data-intro='+el.attr('data-intro')+']'));
-        //$('.intro-cont.active').removeClass('active');
-        //$('.intro-cont[data-intro='+el.attr('data-intro')+']').addClass('active');
     }
 
     function onLeaveServices(ev) {
@@ -127,11 +121,11 @@ define([
     }
 
     function unregister() {
-        bodyEl.off('mouseover', '.services .intro_btn', onIntroButtonOver);
-        bodyEl.off('mouseleave', '.services', onLeaveServices);
-        headEl.off('click', '.btn_continue', onButtonContinue);
+        bodyEl.off('mouseover');
+        bodyEl.off('mouseleave');
+        headEl.off('click');
 
-        // TODO: unsubscribe/destroy slideshow
+        homeSlideshow.remove();
     }
 
     return {

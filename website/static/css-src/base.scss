@@ -24,7 +24,7 @@ h1, h2, h3 {
     font-weight: 100;
 }
 h1 {
-    margin: 0 0 20px 0;
+    margin: 0 0 .2em 0;
     @include font-size(36);
     line-height: 1;
     color: #111;
@@ -34,7 +34,7 @@ h1 {
     z-index: 10;
 }
 .site-nav {
-    font-size: 15px;
+    @include font-size(15);
     background: #23282e;
     @include shadow(0, 1px, 10px, rgba(0,0,0,0.5));
 
@@ -115,9 +115,8 @@ h1 {
 }
 
 #page-contents {
-/*    width: 100%;
-    height: 100%;
-    position: relative;*/
+    position: relative;
+    z-index: 0;
 }
 .pjax-cont {
     display: none;
@@ -199,6 +198,7 @@ footer {
 }
 
 .ss__slide {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -207,6 +207,9 @@ footer {
     &.active {
         z-index: 1;
     }
+}
+.ss__slide1 {
+    display: block;
 }
 
 //
@@ -217,6 +220,7 @@ footer {
     z-index: 1;
 }
 .page-body {
+    position: relative;
     z-index: 0;
     @include font-size(15);
     line-height: 1.65;
@@ -263,16 +267,11 @@ footer {
 //
 
 .home-head {
-    z-index: 0;
     @include shadow(0, 1px, 10px, rgba(0,0,0,0.5));
 
     .ss__slide {
-        display: none;
         right: 0;
         bottom: 0;
-    }
-    .ss__slide1 {
-        display: block;
     }
 
     .ss__prev, .ss_next, .ss__counter-cont, .ss__counter {
@@ -358,7 +357,7 @@ footer {
     .service-cont {
         margin: 0 0 2em 0;
         padding: 0 0 2em 0;
-        border-bottom: 1px #cfcfcf solid;
+        border-bottom: 1px #ddd dotted;
 
         ul {
             padding: 0 0 0 15px;
@@ -378,7 +377,7 @@ footer {
     .proj-type {
         margin: 0 0 2em 0;
         padding: 0 0 2em 0;
-        border-bottom: 1px #cfcfcf solid;
+        border-bottom: 1px #ddd dotted;
 
         &.last {
             border-bottom: none;
@@ -474,11 +473,117 @@ footer {
 }
 
 //
-// Pages: Work
+// Pages: Work Individual
 //
 .work-ind {
     ul {
         list-style: square inside;
+    }
+}
+
+.work-content {
+    .info {
+        @include font-size(12);
+    }
+    .prev_next {
+        @include font-size(12);
+    }
+    .pn-lnk {
+        text-decoration: none;
+        color: #999;
+    }
+
+    .proj_images {
+        position: relative;
+        margin: 20px 0;
+    }
+    .proj_images_mask {
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+            .ss__prev, .ss__next {
+                @include opacity(0.7);
+
+                &:hover {
+                    @include opacity(0.8);
+                    @include transition(0.1s);
+                }
+            }
+        }
+    }
+    .ss__slide {
+        max-width: 100%;
+    }
+    .ss__prev, .ss__next {
+        display: block;
+        position: absolute;
+        top: 44%;
+        width: 30px;
+        height: 130px;
+        cursor: pointer;
+        z-index: 200;
+        background: rgba(0,0,0,0.7);
+        @include transition(0.3s);
+        @include opacity(0);
+
+        .icn {
+            display: block;
+            position: absolute;
+            top: 35%;
+            left: 23%;
+            content: '';
+            width: 13px;
+            height: 43px;
+            @include sprite(0, -164px);
+        }
+
+
+    }
+    .ss__prev {
+        left: 0;
+        border-radius: 0 5px 5px 0;
+        -moz-border-radius: 0 5px 5px 0;
+        -webkit-border-top-left-radius: 0;
+        -webkit-border-bottom-left-radius: 0;
+    }
+    .ss__next {
+        right: 0;
+        border-radius: 5px 0 0 5px;
+        -moz-border-radius: 5px 0 0 5px;
+        -webkit-border-top-right-radius: 0;
+        -webkit-border-bottom-right-radius: 0;
+
+        .icn {
+            background-position: -12px -164px;
+            left: auto;
+            right: 20%;
+        }
+    }
+    .ss__counter-cont {
+        display: block;
+        margin: 10px 0 0 0;
+        height: 20px;
+        width: 100%;
+        text-align: center;
+        z-index: 2;
+    }
+    .ss__counter {
+        display: inline-block;
+        height: 20px;
+        width: 200px;
+    }
+    .ss__slot {
+        display: inline-block;
+        width: 19px;
+        height: 23px;
+        @include sprite(-14px, -135px);
+        cursor: pointer;
+
+        &.active {
+            cursor: default;
+            background-position: 5px -135px;
+        }
     }
 }
 
@@ -1022,7 +1127,6 @@ footer {
         .service-cont {
             margin: 0 0 50px 0;
             padding: 0 0 50px 0;
-            border-bottom: 1px #cfcfcf solid;
         }
         .features {
             @include font-size(12);
@@ -1079,6 +1183,36 @@ footer {
     #contact-map {
         display: block;
     }
+
+    //
+    // Pages: Work Individual
+    //
+    .work-content {
+        h1 {
+            margin-bottom: 0.2em;
+        }
+        .prev_next {
+            text-align: right;
+        }
+        .info {
+            display: block;
+            float: left;
+            width: 22.05%;
+            margin-right: 3.8%;
+        }
+        .work-ind {
+            //margin-left: 25.85%;
+            width: 71.15%;
+            float: left;
+            position: relative;
+        }
+        .proj_images {
+            position: relative;
+            margin: 0 0 20px 0;
+        }
+
+    }
+
 }
 @media screen and (min-width: 680px) {
     .main-content {

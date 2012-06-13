@@ -13,12 +13,14 @@
         //text: 'lib/require/text'
         pjax: 'lib/plugins/pjax',
         waypoints: 'lib/plugins/waypoints',
-        transit: 'lib/plugins/transit'
+        transit: 'lib/plugins/transit',
+        imagesloaded: 'lib/plugins/imagesloaded.min'
     },
     shim: {
         'pjax': ['jquery'],
         'waypoints': ['jquery'],
-        'transit': ['jquery']
+        'transit': ['jquery'],
+        'imagesloaded': ['jquery']
     },
     findNestedDependencies: true,
     removeCombined: true,

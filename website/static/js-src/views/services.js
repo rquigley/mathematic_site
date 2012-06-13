@@ -56,10 +56,9 @@ define([
     function onWaypoint(ev) {
         var el = $(ev.target);
         var target = el.find('.target')[0].name;
-        console.log(target);
+
         submenuEl.find('.active').removeClass('active');
         submenuEl.find('[href=#'+target+']').addClass('active');
-        //console.log(ev.target);
     }
 
     function unregister() {

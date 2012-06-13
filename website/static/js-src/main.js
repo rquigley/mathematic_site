@@ -37,6 +37,11 @@ define([
             case 'contact':
                 require(["views/contact"], onViewLoaded);
                 break;
+            case 'work':
+                if (path_a[2]) {
+                    require(["views/workIndividual"], onViewLoaded);
+                }
+                break;
             default:
                 break;
         }
@@ -147,11 +152,9 @@ define([
 
 
         pageContentsEl.transit({opacity: 0}, 400, function() {
-            dispatchUrl();
-
             pageContentsEl.html(contents);
             pageContentsEl.transit({opacity: 1}, 400);
-
+            dispatchUrl();
         });
     };
 

@@ -55,6 +55,16 @@
                 transition(0, true);
             }
         };
+        
+        var remove = function() {
+            slides
+                .filter('.active')
+                .stop(true, true)
+                .removeClass('active');
+
+            parentEl.off('click');
+            counterContEl.off('click');
+        };
 
         var setupCounter = function() {
             var str = '';
@@ -206,7 +216,8 @@
         };
 
         return {
-            init: init
+            init: init,
+            remove: remove
         };
     };
 
