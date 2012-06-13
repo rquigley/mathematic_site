@@ -43,6 +43,8 @@
 
             if (numSlides <= 1) {
                 counterContEl.hide();
+                parentEl.find('.ss__next,.ss__prev').hide();
+                parentEl.find('.ss__counter-cont').hide();
                 return;
             }
 

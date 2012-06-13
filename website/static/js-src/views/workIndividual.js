@@ -8,11 +8,12 @@ define([
 
     var workSlideshow;
     var hasSlideshow = false;
+    var pageEl = $('#page-contents');
     var ssParent;
     var ssCont;
 
     function init() {
-        ssParent = $('#page-contents .proj_images');
+        ssParent = pageEl.find('.proj_images');
 
         if (ssParent.length) {
             hasSlideshow = true;
@@ -27,9 +28,15 @@ define([
         var dfd = slide1.imagesLoaded();
         var nav = ssParent.find('.ss__prev,.ss__next');
 
+        if (ssCont.children().length === 1) {
+            ssCont.transit({
+                height: ssCont.find('.ss__slide1').height() + 3
+            }, 700);
+        }
+
         core.subscribe('slideshow.onTransition.start', function(ss) {
             ssCont.transit({
-                height: ss.curEl.height()
+                height: ss.curEl.height() + 3
             }, 700);
         });
 
@@ -49,7 +56,9 @@ define([
     }
 
     function unregister() {
-        $.removeData( ssCont.find('.ss__slide1'), 'imagesLoaded' );
+        ssCont.off('mousemove');
+
+        $.removeData(ssCont.find('.ss__slide1'), 'imagesLoaded');
 
         if (hasSlideshow) {
             workSlideshow.remove();

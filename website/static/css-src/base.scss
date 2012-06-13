@@ -512,8 +512,10 @@ footer {
             }
         }
     }
+
     .ss__slide {
         max-width: 100%;
+        border: 1px #efefef solid;        
     }
     .ss__prev, .ss__next {
         display: block;
@@ -583,6 +585,15 @@ footer {
         &.active {
             cursor: default;
             background-position: 5px -135px;
+        }
+    }
+    blockquote {
+        margin: 0;
+        color: #444;
+        @include font-size(12);
+        
+        .byline {
+            color: #333;
         }
     }
 }
@@ -1189,7 +1200,7 @@ footer {
     //
     .work-content {
         h1 {
-            margin-bottom: 0.2em;
+            margin-bottom: 0.4em;
         }
         .prev_next {
             text-align: right;
