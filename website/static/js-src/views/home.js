@@ -80,11 +80,9 @@ define([
     }
 
     function onButtonContinue() {
-        $("html,body").animate(
-            {
-                scrollTop: bodyEl.position().top
-            }
-        );
+        $("html,body").animate({
+            scrollTop: bodyEl.offset().top
+        });
     }
 
     function setupIntro() {
