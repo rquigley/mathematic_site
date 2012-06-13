@@ -8,7 +8,7 @@ define([
     "use strict";
 
     var path, path_a, mode;
-    var pageDiv;
+    var pjaxDiv;
     var pageHeadEl = $('.page-head');
     var pageContentsEl = $('#page-contents');
     var currentView;
@@ -48,8 +48,7 @@ define([
             return;
         }
 
-        doc.on('pjax:start', onPjaxStart)
-            .on('pjax:end', onPjaxEnd);
+        doc.on('pjax:end', onPjaxEnd);
 
         $(window).on('click', '.lnk-a', onNavClick);
     };
@@ -76,7 +75,7 @@ define([
         tmpDiv.className = 'pjax-cont';
         document.body.appendChild(tmpDiv);
 
-        pageDiv = $(tmpDiv);
+        pjaxDiv = tmpDiv;
 
         $.pjax({
             url: href,
@@ -85,14 +84,18 @@ define([
         });
     };
 
-    var onPjaxStart = function() {
-
-        //console.log('start');
-    };
     var onPjaxEnd = function(xhr, options) {
-        var currBreakpoint, destHeight, def;
+        var currBreakpoint, destHeight, def, contents, $pageDiv;
 
-        document.body.className = pageDiv.find('.body_class').attr('data-class');
+        pjaxDiv.id = null;
+        $pageDiv = $(pjaxDiv);
+
+        document.body.className = $pageDiv.find('.body_class').attr('data-class');
+
+        contents = $pageDiv.find('.page-content').html();
+        setTimeout(function() {
+            $pageDiv.remove();
+        }, 100);
 
         if (pageHeadEl.hasClass('home-head')) {
             currBreakpoint = core.getViewport().currBreakpoint;
@@ -109,7 +112,6 @@ define([
             setTimeout(function() {
                 currentView.hideSlideshow();
             }, 200);
-
 
             pageHeadEl.transit({
                 height: destHeight
@@ -146,10 +148,10 @@ define([
 
         pageContentsEl.transit({opacity: 0}, 400, function() {
             dispatchUrl();
-            
-            pageContentsEl.html(pageDiv.find('.page-content').html());
+
+            pageContentsEl.html(contents);
             pageContentsEl.transit({opacity: 1}, 400);
-            pageDiv.remove();
+
         });
     };
 
