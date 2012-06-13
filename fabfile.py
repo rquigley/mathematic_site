@@ -17,13 +17,11 @@ def deploy():
     tmp_dir = 'mathematic_deploy'
     remote_dir = '/var/www/mathematic'
 
-    #sudo('rm -rf %s' % (tmp_dir))
     rsync_project(
         tmp_dir,
         '%s/' % env.build_dir,
         #exclude=RSYNC_EXCLUDE,
         delete=True,
-        #extra_opts=extra_opts,
     )
     sudo('chown -R www-data:www-data %s' % (tmp_dir))
     sudo('rm -rf %s.old' % (remote_dir))
@@ -31,30 +29,6 @@ def deploy():
     sudo('mv %s %s' % (tmp_dir, remote_dir))
     sudo('touch %s/config/uwsgi/production.ini' % (remote_dir))
     sudo('service nginx configtest && service nginx reload')
-    #update_source()
-
-    #build_from_source()
-    #-rm build/last
-    #-mkdir building
-
-
-    #local("touch config.wsgi")
-
-def deploy2():
-    local('scp')
-    #project.upload_project(env.build_dir, )
-    #require('root', provided_by=('staging', 'production'))
-    #if env.environment == 'production':
-    #    if not console.confirm('Are you sure you want to deploy production?',
-    #                           default=False):
-    #        utils.abort('Production deployment aborted.')
-    #extra_opts = '--omit-dir-times'
-    #rsync_project(
-    #    env.root,
-    #    exclude=RSYNC_EXCLUDE,
-    #    delete=True,
-    #    extra_opts=extra_opts,
-    #)
 
 def sass_watch():
     local('sass --scss --watch website/static/css-src/base.scss:website/static/gen/css/site.css')
@@ -78,8 +52,19 @@ def build():
         local('rm -rf %s' % env.build_dir)
 
     local('mkdir %s' % env.build_dir)
+    
+    excludes = [
+        "'.git'",
+        "'*.pyc'",
+        "'*.un~'",
+        "'.DS_Store'",
+        "'.sass-cache'",
+        "'project_files'",
+        "'website/static/*-src'",
+        "'website/content'",
+    ]
 
-    local("rsync -a --exclude '.git' --exclude '*.pyc' --exclude '*.un~' --exclude '.DS_Store' --exclude 'project_files' --exclude 'website/static/css-src' --exclude 'website/static/js-src' --exclude 'website/content' --exclude '.sass-cache' %s/ %s" % (env.project_dir, env.build_dir))
+    local("rsync -a --exclude %s %s/ %s" % (" --exclude ".join(excludes), env.project_dir, env.build_dir))
 
     build_css('%s/%s' % (env.build_dir, env.static_path))
     build_js('%s/%s' % (env.build_dir, env.static_path))
@@ -88,9 +73,6 @@ def build():
 def build_js(out_path = None):
     if out_path is None:
         out_path = env.static_path
-
-    # Something is screwed up with require.js. It's hanging on minifying require.js
-    local('rm -rf %s/gen/js/*' % (env.static_path))
 
     if not os.path.isdir('%s/gen/js' % out_path):
         local('mkdir %s/gen/js' % out_path)
