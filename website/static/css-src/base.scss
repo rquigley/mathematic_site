@@ -482,6 +482,9 @@ footer {
 }
 
 .work-content {
+    h1 {
+        margin-bottom: 0;
+    }
     .info {
         @include font-size(12);
     }
@@ -493,6 +496,10 @@ footer {
         color: #999;
     }
 
+    .project-info {
+        @include font-size(12);
+        text-transform: uppercase;
+    }
     .proj_images {
         position: relative;
         margin: 20px 0;
@@ -588,7 +595,7 @@ footer {
         }
     }
     blockquote {
-        margin: 0;
+        margin: 20px 0 20px 0;
         color: #444;
         @include font-size(12);
         
@@ -723,10 +730,10 @@ footer {
     }
 
     .grad_cont {
-        border-left: 1px #ddd solid;
-        border-right: 1px #ddd solid;
+        //border-left: 1px #ddd solid;
+        //border-right: 1px #ddd solid;
         @include gradient(#f9faf4, #fff);
-        @include shadow(0, 0, 10px, rgba(0,0,0,0.1));
+        //@include shadow(0, 0, 10px, rgba(0,0,0,0.1));
     }
 
     //
@@ -749,8 +756,7 @@ footer {
                 text-decoration: none;
 
                 &:hover {
-                    padding: 20px 20px 3px 20px;
-                    @include no_shadow;
+                    @include shadow_inner(0, 0, 5px, rgba(0, 0, 0, 0.1));
                     @include transition(0.4s);
                     background: rgba(255,255,255,0.7);
 
@@ -761,16 +767,25 @@ footer {
                         text-shadow: 0 0 6px rgba(0,0,0, 0.1);
                     }
                     .descript {
-                        opacity: 0;
+                        display: none;
+                    }
+                    .more {
+                        display: block;
                     }
                 }
             }
-            .descript {
+            .descript, .more {
                 @include font-size(11);
                 text-transform: uppercase;
                 letter-spacing: 0.1em;
-                color: #eaeaea;
                 color: rgba(255,255,255,0.8);
+            }
+            .descript {
+                display: block;
+            }
+            .more {
+                color: rgba(0,0,0,0.6);
+                display: none;
             }
             .ss-lnk {
                 display: block;
@@ -915,12 +930,16 @@ footer {
             line-height: 13px;
             @include transition(0.1s);
 
-            &:after {
+            &:after,
+            &.down:after {
                 display: block;
                 content: '';
                 width: 27px;
                 height: 19px;
                 @include sprite(-27px, -175px);
+            }
+            &.down:after {
+                background-position: -27px -203px;
             }
 
             &:hover {
@@ -1199,14 +1218,14 @@ footer {
     // Pages: Work Individual
     //
     .work-content {
-        h1 {
-            margin-bottom: 0.4em;
-        }
         .prev_next {
             position: absolute;
             top: 20px;
             right: 65px;
             text-align: right;
+        }
+        .project-info {
+            margin: 2px 0 10px 0;
         }
         .info {
             display: block;

@@ -156,6 +156,10 @@ define([
             pageContentsEl.transit({opacity: 1}, 400);
             dispatchUrl();
         });
+        
+        //$("html,body").animate({
+        //    scrollTop: 100
+        //});
     };
 
     var onViewLoaded = function(view) {

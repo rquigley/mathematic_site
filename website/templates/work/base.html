@@ -19,33 +19,39 @@
 
     <h1>{{ project_title }}</h1>
 
+    <div class="project-info">
+        {{ project_name }} ({{ project_year }})        
+    </div>
+
+    <div class="proj_images">
+        <div class="proj_images_mask">
+            <div class="ss__cont">
+                {% block project_slideshow %}
+
+                {% endblock %}
+            </div>
+            <a class="ss__prev"><span class="icn"></span></a>
+            <a class="ss__next"><span class="icn"></span></a>
+        </div>
+        <div class="ss__counter-cont">
+            <div class="ss__counter"></div>
+        </div>
+    </div>
+
     <div class="group">
         <div class="info">
-            Project: {{ project_name }}<br>
-            Year: {{ project_year }}<br>
-            {% if project_url %}
-                <a href="{{ project_url }}" target="_blank">Launch {% if project_url_label %}{{ project_url_label }}{% else %}Website{% endif %}</a><br>
-            {% endif %}
+            
         </div>
         <div class="work-ind">
-            <div class="proj_images">
-                <div class="proj_images_mask">
-                    <div class="ss__cont">
-                        {% block project_slideshow %}
-
-                        {% endblock %}
-                    </div>
-                    <a class="ss__prev"><span class="icn"></span></a>
-                    <a class="ss__next"><span class="icn"></span></a>
-                </div>
-                <div class="ss__counter-cont">
-                    <div class="ss__counter"></div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <div class="group">
         <div class="info">
+            {% if project_url %}
+                <a href="{{ project_url }}" target="_blank">Launch {% if project_url_label %}{{ project_url_label }}{% else %}Website{% endif %}</a><br>
+            {% endif %}
+            
             {% block project_quote %}
             &nbsp;
             {% endblock %}

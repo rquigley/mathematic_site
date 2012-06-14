@@ -6,6 +6,7 @@ define([
 ], function($, core, slideshow) {
     "use strict";
 
+    var win = $(window);
     var headEl;
     var bodyEl;
     var lastServiceEl;
@@ -13,6 +14,8 @@ define([
     var serviceTitleEl;
     var defaultServiceTitle;
     var homeSlideshow;
+    var isPageScrolled = false;
+    var buttonEl;
 
     function init() {
         var ss;
@@ -76,12 +79,33 @@ define([
     }
 
     function setupContinueButton() {
+        buttonEl = headEl.find('.btn_continue');
+
+        win.scroll(onContinueButtonPageScroll).scroll();
+
         headEl.on('click', '.btn_continue', onButtonContinue);
+    }
+    
+    function onContinueButtonPageScroll() {
+        if ((document.documentElement.scrollTop || document.body.scrollTop) > 0) {
+            if (isPageScrolled === true) {
+                return;
+            }
+            isPageScrolled = true;
+            buttonEl.addClass('down');
+
+        } else {
+            if (isPageScrolled === false) {
+                return;
+            }
+            isPageScrolled = false;
+            buttonEl.removeClass('down');
+        }
     }
 
     function onButtonContinue() {
         $("html,body").animate({
-            scrollTop: bodyEl.offset().top
+            scrollTop: isPageScrolled ? 0 : bodyEl.offset().top
         });
     }
 
