@@ -15,15 +15,18 @@ define([
         core.subscribe('window.breakpoint', onBreakpoint);
         onBreakpoint(core.getViewport());
 
-        if (true === mapVisible) {
-            require(["http://maps.google.com/maps/api/js?sensor=false&callback=googleMapCallback"]);
-            //if (window.hasOwnProperty('google') && window.google.hasOwnProperty('maps')) {
-            //    $("#contact-map").empty();
-            //    onMapLibLoaded();
-            //} else {
-            //    require(["googlemaps"], onMapLibLoaded);
-            //}
-        }
+        $('#contact-map').on('click', function() {
+            $(this).addClass('active');
+            if (true === mapVisible) {
+                require(["http://maps.google.com/maps/api/js?sensor=false&callback=googleMapCallback"]);
+                //if (window.hasOwnProperty('google') && window.google.hasOwnProperty('maps')) {
+                //    $("#contact-map").empty();
+                //    onMapLibLoaded();
+                //} else {
+                //    require(["googlemaps"], onMapLibLoaded);
+                //}
+            }
+        });
     }
 
     function onBreakpoint(vp) {

@@ -102,9 +102,10 @@ define([
             $pageDiv.remove();
         }, 100);
 
-        if (pageHeadEl.hasClass('home-head')) {
-            currBreakpoint = core.getViewport().currBreakpoint;
+        currBreakpoint = core.getViewport().currBreakpoint;
 
+        // Slideshow isn't visible at smallest breakpoint
+        if (pageHeadEl.hasClass('home-head') && currBreakpoint >= 480) {
             if (currBreakpoint === 480) {
                 destHeight = 255;
             } else {
@@ -131,8 +132,6 @@ define([
                     });
             });
 
-
-
             currentView.unregister();
         }
 
@@ -150,11 +149,12 @@ define([
         // 7. animate pageContentsEl.height to new height of child
         // 8. set pageContentsEl.height, overflow-y (and x) default
 
-
+        pageContentsEl.height(pageContentsEl.height());
         pageContentsEl.transit({opacity: 0}, 400, function() {
             pageContentsEl.html(contents);
             pageContentsEl.transit({opacity: 1}, 400);
             dispatchUrl();
+            pageContentsEl.height('');
         });
         
         //$("html,body").animate({

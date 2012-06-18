@@ -321,14 +321,16 @@ footer {
     height: 100px;
     text-decoration: none;
     @include font-size(13);
+    border-top: 1px #ddd solid;
 
     .i {
         display: block;
         position: absolute;
-        top: 5px;
+        top: 9px;
         left: 5px;
         width: 100px;
         height: 80px;
+        border: 1px #efefef solid;
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
@@ -338,6 +340,7 @@ footer {
         margin: 0 0 0 120px;
         padding: 15px 0 0 0;
         color: #666;
+        overflow: hidden;
     }
     em {
         @include font-size(15);
@@ -473,6 +476,12 @@ footer {
     height: 300px;
     margin: 20px 0;
     border: 1px #ddd solid;
+    background: url(../../img/map.png) 0 0 no-repeat;
+    cursor: pointer;
+
+    &.active {
+        background: none;
+    }
 }
 
 //
@@ -1131,7 +1140,7 @@ footer {
             width: 100%;
             height: 100%;
             z-index: 0;
-/*            background-size: auto;*/
+            border: none;
             @include shadow(0, 1px, 3px, rgba(0,0,0,0.2));
         }
         .info {
