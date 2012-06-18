@@ -4,9 +4,30 @@
 {% set project_title = "Medium" %}
 {% set project_name = "Web Application" %}
 {% set project_url = "" %}
-{% set project_year ="2011" %}
+{% set project_year ="2009" %}
+
+{% block project_slideshow %}
+    <img src="/static/img/work/medium/1.jpg" class="ss__slide ss__slide1" alt="Artists Page">
+    <img src="/static/img/work/medium/2.jpg" class="ss__slide ss__slide2" alt="Artwork Page">
+    <img src="/static/img/work/medium/3.jpg" class="ss__slide ss__slide2" alt="Sets">
+{% endblock %}
 
 {% block project_content %}
+<p>Medium is a back-office solution for large art galleries and museums built to manage inventory, sales and collectors/contacts. It is capable of generating gallery-specific tearsheets, sales and offer documentation and contains robust searching for specific artworks and contacts</p>
 
+Mathematic designed and built the original system and then licensed in 2011.
+
+<p>Tooling used:</p>
+
+<ul>
+    <li>ExtJS</li>
+    <li>PHP</li>
+    <li>MySQL</li>
+    <li>Management portal built using Symfony2</li>
+
+    <li>Hosted on AWS (EC2, S3)</li>
+    <li>Redis for caching</li>
+    <li>Automated configuration management using Puppet</li>
+</ul>
 
 {% endblock %}

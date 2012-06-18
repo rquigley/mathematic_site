@@ -272,6 +272,7 @@ footer {
     .ss__slide {
         right: 0;
         bottom: 0;
+        text-align: center;
     }
 
     .ss__prev, .ss_next, .ss__counter-cont, .ss__counter {
@@ -288,17 +289,19 @@ footer {
     h2 {
         margin: 0 0 2em 0;
         @include font-size(18);
-        color: #111;
+        line-height: 1.65;
+        color: $link_color;
         text-transform: none;
-        font-weight: 100;
+        font-weight: 500;
     }
     .emp {
         font-weight: 500;
-        color: #000;
     }
 
     .intro-cont {
         margin: 0 0 20px 0;
+        padding: 0 0 20px 0;
+        border-bottom: 1px #ddd solid;
     }
     .col1 {
         display: none;
@@ -671,7 +674,7 @@ footer {
                 display: block;
                 float: left;
                 padding: 10px 5px;
-                color: #777;
+                color: rgba(83, 83, 83, 0.65);
             }
             &:last-child {
                 border-bottom: none;
@@ -748,58 +751,66 @@ footer {
 
         .ss__slide {
             .info {
-                @include gradient(rgba(0,0,0,0.4), rgba(24,0,0,0.3));
+                display: inline-block;
+                @include gradient(rgba(0,0,0,0.4), rgba(24,24,24,0.65));
                 @include shadow_inner(0, 0, 5px, rgba(0, 0, 0, 0.3));
                 @include border_radius(4px);
                 padding: 10px 20px 13px 20px;
                 color: #fff;
                 text-decoration: none;
+                text-align: left;
 
                 &:hover {
                     @include shadow_inner(0, 0, 5px, rgba(0, 0, 0, 0.1));
                     @include transition(0.4s);
-                    background: rgba(255,255,255,0.7);
+                    @include gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8));
 
                     .ss-lnk {
                         @include transition(0.2s);
 
                         color: $link_color;
-                        text-shadow: 0 0 6px rgba(0,0,0, 0.1);
+                        text-shadow: 0 0 6px rgba(255,255,255, 0.1);
                     }
-                    .descript {
-                        display: none;
-                    }
-                    .more {
-                        display: block;
+                    .init {
+                        margin: -20px 0 0 0;
                     }
                 }
             }
-            .descript, .more {
+            .descript {
+                display: block;
                 @include font-size(11);
+                height: 11px;
+                height: 0.688rem;
                 text-transform: uppercase;
                 letter-spacing: 0.1em;
                 color: rgba(255,255,255,0.8);
-            }
-            .descript {
-                display: block;
-            }
-            .more {
-                color: rgba(0,0,0,0.6);
-                display: none;
-            }
-            .ss-lnk {
-                display: block;
-                @include font-size(48);
-                font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                font-weight: 100;
-                line-height: 1;
-                //text-rendering: optimizeLegibility;
-                //letter-spacing: 0.05em;
-                margin: 0 0 4px 0;
-                color: #fff;
+                overflow-y: hidden;
+
+                .init {
+                    width: 100%;
+                    height: 20px;
+                    margin: 0;
+                    @include transition(0.2s);
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                .over {
+                    display: block;
+                    color: rgba(0,0,0,0.6);
+                }
             }
         }
         .ss-lnk {
+            display: block;
+            @include font-size(38);
+            font-family: "museo-sans-rounded", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 100;
+            line-height: 1;
+            //text-rendering: optimizeLegibility;
+            //letter-spacing: 0.05em;
+            margin: 0 0 4px 0;
+            color: #fff;
             @include transition(0.4s);
 
             &:hover {
@@ -923,7 +934,7 @@ footer {
             border-top: 1px #bb4c4d solid;
             border-right: 1px #bb4c4d solid;
             z-index: 3;
-            cursor: pointer;
+            cursor: s-resize;
             @include ir;
             @include shadow(0, -3px, 10px, rgba(0,0,0,0.5));
             @include opacity(0.8);
@@ -937,6 +948,7 @@ footer {
                 width: 27px;
                 height: 19px;
                 @include sprite(-27px, -175px);
+                
             }
             &.down:after {
                 background-position: -27px -203px;
@@ -953,8 +965,14 @@ footer {
     .home-body {
         h2 {
             margin: 20px 0 40px 0;
+            color: #111;
             @include font-size(48);
+            line-height: 1.2;
             text-shadow: 0 1px 0 #fff;
+            font-weight: 100;
+        }
+        .emp {
+            color: #000;
         }
         h3 {
             padding-top: 20px;
@@ -981,6 +999,9 @@ footer {
         }
         .intro-cont {
             display: none;
+            margin: 0;
+            padding: 0;
+            border-bottom: none;
 
             &.active {
                 display: block;
@@ -1164,7 +1185,7 @@ footer {
             background: #fdfdfd;
             padding: 20px;
             border: 1px #eee solid;
-            @include shadow(1px, 4px, 10px, rgba(0,0,0,0.2));
+            @include shadow(1px, 2px, 3px, rgba(0,0,0,0.1));
         }
         .col1 {
             width: 30.75%;
@@ -1256,20 +1277,30 @@ footer {
         position: absolute;
         top: 60px;
         left: auto;
-        right: 0;
+        right: 15px;
         padding: 0 10px 0 5px;
         @include font-size(18);
         @include shadow_inner(0, 0, 5px, rgba(0,0,0,0.8));
 
         li {
              &:after {
-                margin: 0 10px;
+                margin: 0 2px 0 10px;
                 padding: 10px 5px;
             }
         }
 
         a {
             padding: 10px 5px 10px 10px;
+        }
+    }
+
+    //
+    // Pages: Home
+    //
+    .home-head {
+        .ss-lnk {
+            display: block;
+            @include font-size(48);
         }
     }
 

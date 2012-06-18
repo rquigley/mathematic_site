@@ -46,14 +46,14 @@ define([
             curEl = ss.curEl.find('.info');
             curEl.css({
                 'opacity': 0,
-                'left': '21%',
+                'margin-left': -20,
                 'top': 320
             });
         });
         core.subscribe('slideshow.onTransition.end', function(ss) {
             curEl.transit({
                 'opacity': 1,
-                'left': '24%',
+                'margin-left': 0,
                 'top': 300
             });
         });

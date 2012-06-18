@@ -48,6 +48,13 @@
     </div>
     <div class="group">
         <div class="info">
+            Client: {{ project_title }}<br>
+            Project: {{ project_name }}<br>
+            Year: {{ project_year }}<br>
+            {% block project_info %}
+                
+            {% endblock %}
+
             {% if project_url %}
                 <a href="{{ project_url }}" target="_blank">Launch {% if project_url_label %}{{ project_url_label }}{% else %}Website{% endif %}</a><br>
             {% endif %}
