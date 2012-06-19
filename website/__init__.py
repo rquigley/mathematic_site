@@ -70,7 +70,7 @@ def work_client(client):
     def find_client(url):
         for idx, c in enumerate(clients):
             if c['url'] == url:
-                next_idx = 0 if idx + 1 == len(clients) else idx + 1
+                next_idx = (idx + 1) % len(clients)
                 return (
                     c,
                     {
