@@ -29,9 +29,13 @@ define([
         var nav = ssParent.find('.ss__prev,.ss__next');
 
         if (ssCont.children().length === 1) {
-            ssCont.transit({
-                height: ssCont.find('.ss__slide1').height() + 3
-            }, 700);
+            dfd.done(function() {
+                ssCont.transit({
+                    height: ssCont.find('.ss__slide1').height() + 3
+                }, 700);
+            });
+
+            return;
         }
 
         core.subscribe('slideshow.onTransition.start', function(ss) {
