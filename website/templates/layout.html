@@ -65,9 +65,6 @@
 <script data-main="/static/js-src/app.dev.js" src="/static/js-src/lib/require/require.js"></script>
 {% else %}
 <script src="{{ '/static/gen/js/main.js'|timestamped }}"></script>
-<script type="text/javascript">
-    require(["main"]);
-</script>
 {% endif %}
 
 {% if env == 'production' %}

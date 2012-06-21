@@ -27,6 +27,9 @@
     useStrict: false,
     //optimize: "none",
     modules: [
-        { name: "main" }
+        {
+            name: "main",
+            insertRequire: ["main"]
+        }
     ]
 })
