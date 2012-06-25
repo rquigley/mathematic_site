@@ -69,7 +69,7 @@
 }
 
 @mixin sprite($top: 0, $left: 0, $color: transparent) {
-    background: $color url(../../img/sprite.v7.png) $top $left no-repeat;
+    background: $color url(../../img/sprite.v8.png) $top $left no-repeat;
 }
 
 @mixin gradient($start, $end, $direction: vertical, $start_pos: 0%, $end_pos: 100%) {
