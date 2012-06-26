@@ -85,7 +85,7 @@ def work_client(client):
         return
 
 
-    
+
 
     return render_template(os.path.join('work', found_client['template']),
                 is_pjax = "X-PJAX" in request.headers,
@@ -146,7 +146,7 @@ def static_versioned(directory, filepath):
 def sitemap():
     #url_root = request.url_root[:-1]
     url_root = 'http://mathematicinc.com'
-    
+
     rules = [
         {
             'url': '/',
@@ -186,7 +186,7 @@ def sitemap():
             'changefreq': 'weekly',
             'priority': '0.5',
         })
-    
+
     #rules = app.url_map.iter_rules()
     return render_template('sitemap.xml',
         url_root = url_root,

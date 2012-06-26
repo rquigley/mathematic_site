@@ -1,8 +1,8 @@
-{% if is_pjax %}
+{%- if is_pjax -%}
     {% extends 'layout_pjax.html' %}
-{% else %}
+{%- else -%}
     {% extends 'layout.html' %}
-{% endif %}
+{%- endif -%}
 
 
 {% block title %}Our Work - {{ project_page_title }} - {% endblock %}

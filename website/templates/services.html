@@ -1,8 +1,9 @@
-{% if is_pjax %}
+{%- if is_pjax -%}
     {% extends 'layout_pjax.html' %}
-{% else %}
+{%- else -%}
     {% extends 'layout.html' %}
-{% endif %}
+    {% set meta_description = "Services that we provide to our clients." %}
+{%- endif -%}
 
 {% block title %}Services - {% endblock %}
 

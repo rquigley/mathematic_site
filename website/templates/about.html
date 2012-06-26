@@ -1,8 +1,9 @@
-{% if is_pjax %}
+{%- if is_pjax -%}
     {% extends 'layout_pjax.html' %}
-{% else %}
+{%- else -%}
     {% extends 'layout.html' %}
-{% endif %}
+        {% set meta_description = "a digital development agency specializing in engineering, scaling and maintaining web applications and websites." %}
+{%- endif -%}
 
 {% block title %}About Mathematic - {% endblock %}
 

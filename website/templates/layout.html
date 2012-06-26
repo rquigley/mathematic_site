@@ -7,6 +7,9 @@
 <title>{% block title %} - {% endblock %}Mathematic</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%- if meta_description %}
+<meta name="description" content="{{ meta_description }}">
+{%- endif %}
 
 <link rel="stylesheet" href="{{ '/static/gen/css/site.css'|timestamped }}">
 

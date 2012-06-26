@@ -1,8 +1,9 @@
-{% if is_pjax %}
+{%- if is_pjax -%}
     {% extends 'layout_pjax.html' %}
-{% else %}
+{%- else -%}
     {% extends 'layout.html' %}
-{% endif %}
+    {% set meta_description = "Contact information for our New York and North Fork Offices." %}
+{%- endif -%}
 
 {% block title %}Contact Us - {% endblock %}
 
