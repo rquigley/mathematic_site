@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, abort
 #from utility import slugify, friendly_time, timestamped
-from utility import timestamped
+from website.utility import timestamped
 import re
 import os
 
