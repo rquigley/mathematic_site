@@ -1,0 +1,40 @@
+---
+- hosts: site
+  sudo: yes
+
+  tasks:
+    - include: 'tasks/install_nginx.yml'
+    - include: 'tasks/install_nodejs.yml'
+    - include: 'tasks/install_sass.yml'
+
+    - name: install packages
+      apt: name={{ item }} update_cache=yes state=latest
+      with_items:
+        - git-core
+        - libffi-dev
+        - libssl-dev
+        - python-dev
+        - python-setuptools
+
+    - name: PyPI packages to run a site
+      pip: name={{ item }} state=latest
+      with_items:
+        - virtualenv
+        - supervisor
+        - uwsgi
+
+    - include: 'tasks/supervisord.yml'
+
+    - group: name=apps state=present
+    - user: name=www-mathematic group=apps
+
+    - name: nginx config
+      template:
+        src: templates/nginx.conf
+        dest: /etc/nginx/nginx.conf
+      notify:
+        - restart nginx
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted

@@ -1,0 +1,14 @@
+- name: NodeJS | Adding signing key
+  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+
+- name: NodeJS | Adding sources.list deb url
+  lineinfile: dest=/etc/apt/sources.list line="deb https://deb.nodesource.com/node_4.x trusty main"
+
+- name: NodeJS | Updating apt cache
+  apt:
+    update_cache: yes
+
+- name: NodeJS | Install
+  apt:
+    pkg: nodejs
+    state: latest

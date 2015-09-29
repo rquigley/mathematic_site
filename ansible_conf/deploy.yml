@@ -1,0 +1,41 @@
+---
+- hosts: site
+
+  tasks:
+    - name: Deploy from github
+      git: repo=https://github.com/rquigley/mathematic_site.git dest=/home/www-mathematic/mathematic_site
+      become: yes
+      become_user: www-mathematic
+
+    - name: PyPI packages
+      pip: virtualenv=/home/www-mathematic/mathematic_site_venv requirements=/home/www-mathematic/mathematic_site/requirements.txt
+      become: yes
+      become_user: www-mathematic
+
+    - name: write the supervisor template
+      template:
+        src: templates/mathematic_site.ini
+        dest: /etc/supervisor/mathematic_site.ini
+      notify:
+        - restart app
+
+    - name: ensure supervisor is running
+      supervisorctl:
+        name: mathematic_site
+        state: started
+
+    - name: nginx config
+      template:
+        src: templates/nginx_mathematic.conf
+        dest: /etc/nginx/conf.d/mathematic.conf
+      notify:
+        - restart nginx
+
+  handlers:
+    - name: restart app
+      supervisorctl:
+        name: mathematic_site
+        state: restarted
+
+    - name: restart nginx
+      service: name=nginx state=restarted

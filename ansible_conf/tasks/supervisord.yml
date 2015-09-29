@@ -1,0 +1,11 @@
+- name: create config folder
+  action: file dest=/etc/supervisor state=directory owner=root
+
+- name: create config
+  action: template src=templates/supervisord.conf dest=/etc/supervisor/supervisord.conf
+
+- name: create init script
+  action: template src=templates/supervisord.sh dest=/etc/init.d/supervisord mode=0755
+
+- name: start service
+  action: service name=supervisord state=started enabled=yes

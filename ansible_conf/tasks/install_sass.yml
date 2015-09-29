@@ -1,0 +1,6 @@
+- name: SASS | Install Ruby
+  apt:
+    pkg: ruby2.0
+
+- name: SASS | Install SASS
+  gem: name=sass state=latest
