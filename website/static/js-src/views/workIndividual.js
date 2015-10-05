@@ -1,78 +1,70 @@
-define([
-    'jquery',
-    'memphis',
-    'plugins/slideshow',
-    'imagesloaded',
-], function($, core, slideshow) {
-    "use strict";
+import $ from 'jquery';
+import core from 'memphis';
+import util from '../util';
+import 'velocity-animate';
 
-    var workSlideshow;
-    var hasSlideshow = false;
-    var pageEl = $('#page-contents');
-    var ssParent;
-    var ssCont;
+import slideshow from '../plugins/slideshow';
 
-    function init() {
-        ssParent = pageEl.find('.proj_images');
+let workSlideshow;
+let ssParent;
+let ssCont;
 
-        if (ssParent.length) {
-            hasSlideshow = true;
-            ssCont = ssParent.find('.ss__cont');
+function init() {
+    ssParent = $('#page-contents .proj_images');
 
-            setupSlideshow();
-        }
+    if (ssParent.length) {
+        ssCont = ssParent.find('.ss__cont');
+
+        setupSlideshow();
     }
+}
 
-    function setupSlideshow() {
-        var slide1 = ssCont.find('.ss__slide1');
-        var dfd = slide1.imagesLoaded();
-        var nav = ssParent.find('.ss__prev,.ss__next');
+function setupSlideshow() {
+    let dfd = util.imagesLoaded(ssCont.find('.ss__slide1'));
+    let nav = ssParent.find('.ss__prev,.ss__next');
 
-        if (ssCont.children().length === 1) {
-            dfd.done(function() {
-                ssCont.transit({
-                    height: ssCont.find('.ss__slide1').height() + 3
-                }, 700);
-            });
-
-            return;
-        }
-
-        core.subscribe('slideshow.onTransition.start', function(ss) {
-            ssCont.transit({
-                height: ss.curEl.height() + 3
-            }, 700);
-        });
-
-        //core.subscribe('slideshow.onTransition.end', function(ss) {
-        //
-        //});
-
-        workSlideshow = slideshow(ssParent);
-
-        ssCont.on('mousemove', function(ev) {
-            nav.css('top', ev.offsetY - 60);
-        });
-
+    if (ssCont.children().length === 1) {
         dfd.done(function() {
-            workSlideshow.init();
+            ssCont.velocity({
+                height: ssCont.find('.ss__slide1').height() + 3
+            }, {
+                duration: 700
+            });
         });
+
+        return;
     }
 
-    function unregister() {
-        ssCont.off('mousemove');
+    core.subscribe('slideshow.onTransition.start', function(ss) {
+        ssCont.velocity({
+            height: ss.curEl.height() + 3
+        }, {
+            duration: 700
+        });
+    });
 
-        $.removeData(ssCont.find('.ss__slide1'), 'imagesLoaded');
+    workSlideshow = slideshow(ssParent);
 
-        if (hasSlideshow) {
-            workSlideshow.remove();
-        }
+    ssCont.on('mousemove', function(ev) {
+        nav.css('top', ev.offsetY - 60);
+    });
+
+    dfd.done(function() {
+        workSlideshow.init();
+    });
+}
+
+function unregister() {
+    ssCont.off('mousemove');
+
+    $.removeData(ssCont.find('.ss__slide1'), 'imagesLoaded');
+
+    if (workSlideshow) {
+        workSlideshow.remove();
     }
+}
 
-    return {
-        init: init,
-        unregister: unregister
-    };
-});
-
-
+export default {
+    init,
+    unregister,
+};
