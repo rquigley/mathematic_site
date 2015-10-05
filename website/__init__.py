@@ -1,25 +1,31 @@
 from flask import Flask, request, render_template, abort
-#from utility import slugify, friendly_time, timestamped
-from website.utility import timestamped
+from flask.ext.cache import Cache
 import re
 import os
 
 app = Flask(__name__)
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+app.app_cache = cache
 
 env = os.getenv('mm_env', 'production')
-#env = 'production'
 if env == 'dev':
     app.debug = True
-
-#import logging
-#logging.basicConfig(filename='/var/www/mathematic/site.log',level=logging.DEBUG)
-#logging.basicConfig(filename='site.log',level=logging.DEBUG)
-
-app.jinja_env.filters['timestamped'] = timestamped
 
 app.jinja_env.globals.update({
     'env': env
 })
+
+
+@cache.memoize(50)
+@app.template_filter()
+def timestamped(file_path):
+    full_path = os.path.join(app.static_folder, file_path.replace('/static/',
+        ''))
+    mtime = int(os.path.getmtime(full_path))
+    path_parts = os.path.split(file_path)
+    f_parts = path_parts[-1].split('.')
+
+    return "%s/%s.v%s.%s" % (path_parts[0], f_parts[0], mtime, f_parts[1])
 
 clients = [
     {
@@ -59,11 +65,13 @@ clients = [
     },
 ]
 
+
 @app.route("/")
 def hello():
     return render_template('index.html',
-                is_pjax = "X-PJAX" in request.headers,
+                is_pjax="X-PJAX" in request.headers,
                 )
+
 
 @app.route("/work/<client>/")
 def work_client(client):
@@ -75,7 +83,7 @@ def work_client(client):
                     c,
                     {
                         'next': clients[next_idx],
-                        'prev': clients[idx-1],
+                        'prev': clients[idx - 1],
                     }
                 )
 
@@ -84,97 +92,90 @@ def work_client(client):
         abort(404)
         return
 
-
-
-
     return render_template(os.path.join('work', found_client['template']),
-                is_pjax = "X-PJAX" in request.headers,
-                prev_next = prev_next,
+                is_pjax="X-PJAX" in request.headers,
+                prev_next=prev_next,
                 )
+
 
 @app.route("/work/")
 def work():
-    #logging.info('pjax:%s' % ("X-PJAX" in request.headers))
-    #logging.info(str(request.headers))
     return render_template('work.html',
-                clients = clients,
-                is_pjax = "X-PJAX" in request.headers,
+                clients=clients,
+                is_pjax="X-PJAX" in request.headers,
                 )
+
 
 @app.route("/services/")
 def services():
-    #logging.info('pjax:%s' % ("X-PJAX" in request.headers))
-    #logging.info(str(request.headers))
     return render_template('services.html',
-                is_pjax = "X-PJAX" in request.headers,
-                )
+        is_pjax="X-PJAX" in request.headers)
+
 
 @app.route("/about/")
 def about():
     return render_template('about.html',
-                is_pjax = "X-PJAX" in request.headers,
-                )
+        is_pjax="X-PJAX" in request.headers)
+
 
 @app.route("/contact/")
 def contact():
     return render_template('contact.html',
-                is_pjax = "X-PJAX" in request.headers,
-                )
+        is_pjax="X-PJAX" in request.headers)
+
 
 @app.route("/our-thinking/")
 def blog():
     return render_template('blog.html',
-                is_pjax = "X-PJAX" in request.headers,
-                )
+        is_pjax="X-PJAX" in request.headers)
+
 
 @app.route("/favicon.ico")
 def favicon():
     return app.send_static_file("favicon.ico")
 
+
 @app.route("/robots.txt")
 def robots():
     return app.send_static_file("robots.txt")
+
 
 @app.route("/static/<directory>/<path:filepath>")
 def static_versioned(directory, filepath):
     if filepath.find('.v') != -1:
         filepath = re.sub('\.v\d+', '', filepath)
 
-    return app.send_static_file(directory+'/'+filepath)
+    return app.send_static_file(directory + '/' + filepath)
+
 
 @app.route('/sitemap.xml')
 def sitemap():
-    #url_root = request.url_root[:-1]
+    # url_root = request.url_root[:-1]
     url_root = 'http://mathematicinc.com'
 
     rules = [
         {
             'url': '/',
-            #'lastmod': '',
             'changefreq': 'weekly',
             'priority': '1',
         },
         {
             'url': '/work/',
-            #'lastmod': '',
             'changefreq': 'weekly',
             'priority': '0.9',
         },
         {
             'url': '/services/',
-            #'lastmod': '',
             'changefreq': 'weekly',
             'priority': '0.6',
         },
         {
             'url': '/about/',
-            #'lastmod': '',
             'changefreq': 'weekly',
             'priority': '0.6',
         },
         {
             'url': '/contact/',
-            #'lastmod': '',
             'changefreq': 'weekly',
             'priority': '0.6',
         },
@@ -182,16 +183,15 @@ def sitemap():
     for c in clients:
         rules.append({
             'url': '/work/%s/' % c['url'],
-            #'lastmod': '',
             'changefreq': 'weekly',
             'priority': '0.5',
         })
 
-    #rules = app.url_map.iter_rules()
     return render_template('sitemap.xml',
-        url_root = url_root,
-        rules = rules
+        url_root=url_root,
+        rules=rules,
     )
+
 
 @app.errorhandler(404)
 def page_not_found(error):

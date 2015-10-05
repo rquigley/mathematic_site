@@ -65,9 +65,11 @@
 </footer>
 
 {% if env == 'dev' %}
-<script data-main="/static/js-src/app.dev.js" src="/static/js-src/lib/require/require.js"></script>
+<script src="/static/gen/js/vendor.bundle.js"></script>
+<script src="/static/gen/js/bundle.js"></script>
 {% else %}
-<script src="{{ '/static/gen/js/main.js'|timestamped }}"></script>
+<script src="{{ '/static/gen/js/vendor.bundle.js'|timestamped }}"></script>
+<script src="{{ '/static/gen/js/bundle.js'|timestamped }}"></script>
 {% endif %}
 
 {% if env == 'production' %}
