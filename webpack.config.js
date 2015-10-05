@@ -29,6 +29,5 @@ module.exports = {
             Promise: 'es6-promise',
         }),
     ],
-    devtool: 'inline-source-map'
 };
 
