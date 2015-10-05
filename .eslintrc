@@ -1,0 +1,126 @@
+---
+parser: babel-eslint
+
+env:
+  browser: true
+  node: true
+  es6: true
+  mocha: true
+
+ecmaFeatures:
+  modules: true
+
+rules:
+  # Possible errors
+  no-cond-assign: 0
+  no-console: 0
+  no-debugger: 2
+  no-dupe-args: 2
+  no-dupe-keys: 2
+  no-duplicate-case: 1
+  no-empty-character-class: 1
+  no-extra-boolean-cast: 1
+  no-extra-parens: [1, functions]
+  no-extra-semi: 1
+  no-func-assign: 2
+  # es6 allows block-scoped functions
+  no-inner-declarations: 0
+  no-invalid-regexp: 1
+  no-irregular-whitespace: 1
+  no-obj-calls: 2
+  no-regex-spaces: 1
+  use-isnan: 2
+
+  # Best Practices
+  complexity: [2, 10]
+  consistent-return: 1
+  curly: [2, all]
+  default-case: 1
+  dot-notation: 1
+  eqeqeq: [2, "allow-null"]
+  no-alert: 0
+  no-caller: 1
+  no-extra-bind: 1
+  no-floating-decimal: 2
+  no-implicit-coercion: 0
+  no-lone-blocks: 1
+  no-loop-func: 1
+  no-multi-spaces: 1
+  no-multiple-empty-lines: 1
+  no-native-reassign: [2, {exceptions: [Map, Set]}]
+  no-nested-ternary: 1
+  no-new-func: 1
+  no-new-wrappers: 1
+  no-new: 1
+  no-proto: 1
+  no-redeclare: 1
+  no-script-url: 2
+  no-undef: 1
+  no-underscore-dangle: 0
+  no-unused-expressions: 0
+  no-unused-vars: 1
+  no-use-before-define: 0
+  no-useless-call: 1
+  no-void: 1
+  no-with: 1
+  radix: 1
+  # Trying this out...
+  vars-on-top: 0
+  yoda: 1
+
+  # ES6 modules enforce this
+  strict: 0
+
+  # Variables
+  init-declarations: 0
+  no-delete-var: 2
+  no-shadow-restricted-names: 1
+  no-undef-init: 0
+  no-undefined: 0
+  no-unused-vars: [1, {args: none}]
+
+  # Stylistic
+  array-bracket-spacing: 1
+  brace-style: [1, 1tbs, {allowSingleLine: true}]
+  camelcase: [2, {"properties": "never"}]
+  comma-dangle: [0, always-multiline]
+  comma-spacing: [1, {before: false, after: true}]
+  comma-style: [1, last]
+  computed-property-spacing: [1, never]
+  consistent-this: [1, "_this"]
+  eol-last: 1
+  indent: [1, 4, {SwitchCase: 1}]
+  new-parens: 2
+  newline-after-var: 0
+  no-array-constructor: 2
+  no-continue: 0
+  no-new-object: 1
+  no-spaced-func: 1
+  no-ternary: 0
+  no-trailing-spaces: 1
+  no-underscore-dangle: 0
+  no-unneeded-ternary: 1
+  one-var: [1, {initialized: never}]
+  operator-assignment: [1, always]
+  operator-linebreak: [2, "before"]
+  padded-blocks: 0
+  quote-props: [2, "consistent-as-needed"]
+  quotes: [2, "single", "avoid-escape"]
+  semi-spacing: [1, {before: false, after: true}]
+  semi: [1, always]
+  sort-vars: 0
+  space-after-keywords: [1, always]
+  space-before-function-paren: [1, {anonymous: never, named: never}]
+  space-in-parens: [1, never]
+  space-infix-ops: 0
+  space-return-throw-case: 1
+
+  # ES6
+  arrow-parens: 0
+  arrow-spacing: [1, {before: true, after: true}]
+  constructor-super: 2
+  no-this-before-super: 2
+  no-var: 1
+  object-shorthand: 1
+  prefer-const: 0
+  prefer-spread: 1
