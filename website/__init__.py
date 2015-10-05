@@ -15,18 +15,6 @@ app.jinja_env.globals.update({
     'env': env
 })
 
-
-@cache.memoize(50)
-@app.template_filter()
-def timestamped(file_path):
-    full_path = os.path.join(app.static_folder, file_path.replace('/static/',
-        ''))
-    mtime = int(os.path.getmtime(full_path))
-    path_parts = os.path.split(file_path)
-    f_parts = path_parts[-1].split('.')
-
-    return "%s/%s.v%s.%s" % (path_parts[0], f_parts[0], mtime, f_parts[1])
-
 clients = [
     {
         'url': 'aol-makers',
@@ -64,6 +52,20 @@ clients = [
         'project': 'Application',
     },
 ]
+
+
+@cache.memoize(50)
+@app.template_filter()
+def timestamped(file_path):
+    full_path = os.path.join(app.static_folder, file_path.replace('/static/',
+        ''))
+    mtime = int(os.path.getmtime(full_path))
+    path_parts = os.path.split(file_path)
+    f_parts = path_parts[-1].split('.')
+    filename = ".".join(f_parts[0:-1])
+    ext = f_parts[-1]
+
+    return "%s/%s.v%s.%s" % (path_parts[0], filename, mtime, ext)
 
 
 @app.route("/")
